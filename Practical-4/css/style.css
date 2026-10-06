@@ -1,0 +1,884 @@
+/* =========================================
+   STUDENTHUB
+   PRACTICAL 4 CSS
+   ========================================= */
+
+
+/* =========================================
+   RESET
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f4f7fb;
+
+    color: #222;
+
+    line-height: 1.6;
+
+    min-height: 100vh;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+header {
+    background-color: #2563eb;
+
+    color: white;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 900;
+}
+
+
+.navbar {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 15px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.logo {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 25px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   HAMBURGER
+   ========================================= */
+
+.hamburger {
+    display: block;
+
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    padding: 5px;
+}
+
+
+/* =========================================
+   NAVIGATION
+   ========================================= */
+
+.navigation-menu {
+    display: none;
+
+    list-style: none;
+
+    position: absolute;
+
+    top: 65px;
+
+    left: 0;
+
+    width: 100%;
+
+    background-color: #2563eb;
+
+    padding: 15px;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.navigation-menu.show {
+    display: flex;
+}
+
+
+.navigation-menu a {
+    display: block;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 10px;
+
+    border-radius: 5px;
+
+    text-align: center;
+}
+
+
+.navigation-menu a:hover,
+.navigation-menu a[aria-current="page"] {
+    background-color: #1d4ed8;
+}
+
+
+/* =========================================
+   THEME BUTTON
+   ========================================= */
+
+.theme-button {
+    background-color: white;
+
+    color: #2563eb;
+
+    border: none;
+
+    padding: 9px 12px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+.theme-button:hover {
+    background-color: #e5e7eb;
+}
+
+
+/* =========================================
+   MAIN
+   ========================================= */
+
+main {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 30px 20px;
+}
+
+
+/* =========================================
+   HERO
+   ========================================= */
+
+.hero {
+    background-color: white;
+
+    padding: 50px 25px;
+
+    text-align: center;
+
+    border-radius: 12px;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+
+.hero h1 {
+    font-size: 34px;
+
+    margin-bottom: 15px;
+}
+
+
+.hero p {
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.primary-button,
+.slider-controls button {
+    background-color: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    padding: 11px 20px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+.primary-button:hover,
+.slider-controls button:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* =========================================
+   PAGE HEADING
+   ========================================= */
+
+.page-heading {
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    margin-bottom: 25px;
+
+    text-align: center;
+}
+
+
+.page-heading h1 {
+    margin-bottom: 10px;
+}
+
+
+/* =========================================
+   FEATURES
+   ========================================= */
+
+.features {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+}
+
+
+.features h2 {
+    grid-column: 1 / -1;
+}
+
+
+.feature-card {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+
+.feature-card h3 {
+    margin-bottom: 10px;
+}
+
+
+.feature-card p {
+    margin-bottom: 15px;
+}
+
+
+.feature-card a {
+    display: inline-block;
+
+    background-color: #2563eb;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 9px 15px;
+
+    border-radius: 5px;
+}
+
+
+/* =========================================
+   SLIDER
+   ========================================= */
+
+.slider-section,
+.event-slider-section {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    margin-bottom: 30px;
+
+    text-align: center;
+}
+
+
+.slider,
+.event-slider {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 250px;
+
+    margin-top: 20px;
+}
+
+
+.slide,
+.event-slide {
+    display: none;
+
+    min-height: 250px;
+
+    padding: 40px 25px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    color: white;
+}
+
+
+.slide.active,
+.event-slide.active {
+    display: block;
+
+    animation: slideIn 0.4s ease;
+}
+
+
+.slide-content {
+    max-width: 700px;
+
+    margin: auto;
+}
+
+
+.slide-icon,
+.event-icon {
+    display: block;
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+
+.slide h3,
+.event-slide h3 {
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+
+.slider-controls {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+
+#slideNumber,
+#eventNumber {
+    font-weight: bold;
+
+    min-width: 50px;
+}
+
+
+@keyframes slideIn {
+
+    from {
+        opacity: 0;
+
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateX(0);
+    }
+
+}
+
+
+/* =========================================
+   FAQ
+   ========================================= */
+
+.faq-section {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+}
+
+
+.faq-item {
+    margin-top: 15px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 7px;
+
+    overflow: hidden;
+}
+
+
+.faq-question {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background-color: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    padding: 15px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    font-size: 16px;
+}
+
+
+.faq-question:hover {
+    background-color: #1d4ed8;
+}
+
+
+.faq-icon {
+    font-size: 22px;
+
+    font-weight: bold;
+}
+
+
+.faq-answer {
+    display: none;
+
+    background-color: #f8fafc;
+
+    padding: 20px;
+}
+
+
+.faq-answer.show {
+    display: block;
+
+    animation: answerOpen 0.3s ease;
+}
+
+
+.faq-answer p {
+    margin-bottom: 10px;
+}
+
+
+.faq-answer a {
+    color: #2563eb;
+
+    font-weight: bold;
+}
+
+
+@keyframes answerOpen {
+
+    from {
+        opacity: 0;
+
+        max-height: 0;
+    }
+
+    to {
+        opacity: 1;
+
+        max-height: 300px;
+    }
+
+}
+
+
+/* =========================================
+   EVENT LIST
+   ========================================= */
+
+.event-list {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+}
+
+
+.event-list h2 {
+    grid-column: 1 / -1;
+}
+
+
+.event-list article {
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    border-left: 5px solid #2563eb;
+}
+
+
+/* =========================================
+   MODAL
+   ========================================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    z-index: 2000;
+
+    left: 0;
+
+    top: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.65);
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+}
+
+
+.modal.show {
+    display: flex;
+}
+
+
+.modal-content {
+    background-color: white;
+
+    color: #222;
+
+    width: 100%;
+
+    max-width: 550px;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    position: relative;
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.3);
+
+    animation: modalOpen 0.3s ease;
+}
+
+
+.modal-content h2 {
+    margin-bottom: 15px;
+}
+
+
+.modal-content p {
+    margin-bottom: 15px;
+}
+
+
+.modal-close {
+    position: absolute;
+
+    right: 15px;
+
+    top: 10px;
+
+    background: none;
+
+    border: none;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    color: #555;
+}
+
+
+@keyframes modalOpen {
+
+    from {
+        opacity: 0;
+
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================================
+   NOTIFICATION BANNER
+   ========================================= */
+
+.notification-banner {
+    position: fixed;
+
+    top: -100px;
+
+    left: 0;
+
+    width: 100%;
+
+    background-color: #16a34a;
+
+    color: white;
+
+    padding: 13px 20px;
+
+    z-index: 3000;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 15px;
+
+    transition: top 0.4s ease;
+}
+
+
+.notification-banner.show {
+    top: 0;
+}
+
+
+.notification-banner button {
+    background: none;
+
+    border: none;
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   DARK MODE
+   ========================================= */
+
+body.dark-mode {
+    background-color: #111827;
+
+    color: #f9fafb;
+}
+
+
+body.dark-mode .hero,
+body.dark-mode .page-heading,
+body.dark-mode .features,
+body.dark-mode .feature-card,
+body.dark-mode .slider-section,
+body.dark-mode .event-slider-section,
+body.dark-mode .faq-section,
+body.dark-mode .event-list article {
+    background-color: #1f2937;
+
+    color: #f9fafb;
+}
+
+
+body.dark-mode .faq-answer {
+    background-color: #374151;
+
+    color: white;
+}
+
+
+body.dark-mode .modal-content {
+    background-color: #1f2937;
+
+    color: white;
+}
+
+
+body.dark-mode .modal-close {
+    color: white;
+}
+
+
+body.dark-mode footer {
+    background-color: #030712;
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+footer {
+    background-color: #1e293b;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px;
+
+    margin-top: 30px;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (min-width: 600px) {
+
+    .features {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .event-list {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================
+   DESKTOP
+   ========================================= */
+
+@media (min-width: 900px) {
+
+    .navbar {
+        padding: 15px 30px;
+    }
+
+
+    .hamburger {
+        display: none;
+    }
+
+
+    .navigation-menu {
+        position: static;
+
+        width: auto;
+
+        padding: 0;
+
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        gap: 5px;
+
+        background-color: transparent;
+    }
+
+
+    .navigation-menu a {
+        padding: 8px 10px;
+    }
+
+
+    .features {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+
+    .event-list {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+}
