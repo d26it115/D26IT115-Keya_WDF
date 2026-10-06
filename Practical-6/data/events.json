@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "title": "Web Development Workshop",
+        "category": "Workshop",
+        "date": "2026-10-15",
+        "venue": "Computer Lab 1",
+        "description": "Learn HTML, CSS and JavaScript through practical exercises.",
+        "organizer": "Computer Department"
+    },
+    {
+        "id": 2,
+        "title": "Cultural Fest",
+        "category": "Cultural",
+        "date": "2026-10-22",
+        "venue": "College Auditorium",
+        "description": "Enjoy music, dance, drama and other cultural performances.",
+        "organizer": "Student Council"
+    },
+    {
+        "id": 3,
+        "title": "Sports Day",
+        "category": "Sports",
+        "date": "2026-11-05",
+        "venue": "College Ground",
+        "description": "Participate in various indoor and outdoor sports activities.",
+        "organizer": "Sports Committee"
+    },
+    {
+        "id": 4,
+        "title": "AI and Machine Learning Seminar",
+        "category": "Seminar",
+        "date": "2026-11-12",
+        "venue": "Seminar Hall",
+        "description": "An introductory seminar on artificial intelligence and machine learning.",
+        "organizer": "IT Department"
+    },
+    {
+        "id": 5,
+        "title": "Entrepreneurship Workshop",
+        "category": "Workshop",
+        "date": "2026-11-18",
+        "venue": "Room 204",
+        "description": "Learn the fundamentals of entrepreneurship and startup development.",
+        "organizer": "Entrepreneurship Cell"
+    },
+    {
+        "id": 6,
+        "title": "Coding Competition",
+        "category": "Competition",
+        "date": "2026-11-25",
+        "venue": "Programming Lab",
+        "description": "Test your programming skills by solving interesting coding problems.",
+        "organizer": "Coding Club"
+    },
+    {
+        "id": 7,
+        "title": "Technical Project Exhibition",
+        "category": "Technical",
+        "date": "2026-12-02",
+        "venue": "Main Building",
+        "description": "Students showcase their innovative academic and technical projects.",
+        "organizer": "Technical Club"
+    },
+    {
+        "id": 8,
+        "title": "Photography Contest",
+        "category": "Competition",
+        "date": "2026-12-10",
+        "venue": "College Campus",
+        "description": "Show your creativity and photography skills in this campus contest.",
+        "organizer": "Photography Club"
+    },
+    {
+        "id": 9,
+        "title": "Career Guidance Seminar",
+        "category": "Seminar",
+        "date": "2026-12-15",
+        "venue": "Seminar Hall",
+        "description": "Get guidance about higher studies, careers and placement opportunities.",
+        "organizer": "Training and Placement Cell"
+    },
+    {
+        "id": 10,
+        "title": "Annual Day",
+        "category": "Cultural",
+        "date": "2026-12-20",
+        "venue": "College Auditorium",
+        "description": "Celebrate the annual college day with performances and awards.",
+        "organizer": "College Administration"
+    }
+]
