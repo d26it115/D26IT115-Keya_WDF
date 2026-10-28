@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "name": "Keya Patel",
+        "email": "keya.patel@gmail.com",
+        "course": "BCA",
+        "year": "Third Year",
+        "department": "Computer Applications"
+    },
+    {
+        "id": 2,
+        "name": "Rahul Shah",
+        "email": "rahul.shah@gmail.com",
+        "course": "BCA",
+        "year": "Second Year",
+        "department": "Computer Applications"
+    },
+    {
+        "id": 3,
+        "name": "Priya Mehta",
+        "email": "priya.mehta@gmail.com",
+        "course": "BBA",
+        "year": "Third Year",
+        "department": "Business Administration"
+    },
+    {
+        "id": 4,
+        "name": "Aarav Desai",
+        "email": "aarav.desai@gmail.com",
+        "course": "B.Tech",
+        "year": "Fourth Year",
+        "department": "Computer Engineering"
+    },
+    {
+        "id": 5,
+        "name": "Diya Shah",
+        "email": "diya.shah@gmail.com",
+        "course": "B.Sc",
+        "year": "First Year",
+        "department": "Science"
+    },
+    {
+        "id": 6,
+        "name": "Riya Patel",
+        "email": "riya.patel@gmail.com",
+        "course": "B.Com",
+        "year": "Second Year",
+        "department": "Commerce"
+    },
+    {
+        "id": 7,
+        "name": "Krish Joshi",
+        "email": "krish.joshi@gmail.com",
+        "course": "BCA",
+        "year": "Third Year",
+        "department": "Computer Applications"
+    },
+    {
+        "id": 8,
+        "name": "Ananya Mehta",
+        "email": "ananya.mehta@gmail.com",
+        "course": "BBA",
+        "year": "Second Year",
+        "department": "Business Administration"
+    }
+]

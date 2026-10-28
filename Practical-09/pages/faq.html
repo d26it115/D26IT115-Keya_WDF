@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - FAQ</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo-link">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="logo-image">
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button id="menuButton" class="hamburger" type="button" aria-expanded="false" aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html" aria-current="page">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li>
+                    <div class="theme-toggle-wrapper">
+                        <span class="theme-icon" aria-hidden="true">☀️</span>
+                        <label class="theme-toggle" for="themeToggle">
+                            <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode">
+                            <span class="theme-slider"></span>
+                        </label>
+                        <span class="theme-icon" aria-hidden="true">🌙</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-heading">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find immediate answers to common questions about using StudentHub, managing your account, and accessing campus events.</p>
+        </section>
+
+        <section class="faq-section" aria-labelledby="faqHeading">
+            <div class="faq-search">
+                <input
+                    type="search"
+                    id="faqSearch"
+                    placeholder="🔍 Search questions or keywords..."
+                    aria-label="Search frequently asked questions"
+                >
+            </div>
+
+            <h2 id="faqHeading">Common Questions</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>What is StudentHub?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>StudentHub is a campus web portal providing students with college notices, events, student profiles, and interactive feedback forms.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>How do I create a new student account?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Visit the Register page and fill in your full name, email, contact number, course, and academic year.</p>
+                    <a href="register.html">Go to Registration &rarr;</a>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>How do I log into my account?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Navigate to the Login page and enter your registered campus email address and password.</p>
+                    <a href="login.html">Go to Login &rarr;</a>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>Where can I find upcoming college events?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Browse our Events directory to explore upcoming workshops, seminars, and fests with keyword search and sorting.</p>
+                    <a href="events.html">View Events &rarr;</a>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>How can I submit suggestions or feedback?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Open the Feedback page to share your experience, rate campus facilities, and propose improvements.</p>
+                    <a href="feedback.html">Give Feedback &rarr;</a>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                    <span>How do I contact campus administration?</span>
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Visit the Contact page to send a direct message or view our campus office address and email details.</p>
+                    <a href="contact.html">Contact Us &rarr;</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
