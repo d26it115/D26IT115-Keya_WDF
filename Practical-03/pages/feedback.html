@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Feedback</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav aria-label="Main navigation">
+            <a href="index.html">StudentHub</a>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="feedback.html" aria-current="page">Feedback</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section aria-labelledby="feedback-heading">
+            <h1 id="feedback-heading">Student Feedback</h1>
+
+            <p>
+                We value your opinion. Share your experience
+                and suggestions with us.
+            </p>
+        </section>
+
+        <section aria-labelledby="feedback-form-heading">
+
+            <h2 id="feedback-form-heading">Submit Feedback</h2>
+
+            <form action="#" method="post">
+
+                <div>
+                    <label for="name">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        autocomplete="name">
+                </div>
+
+                <div>
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        autocomplete="email">
+                </div>
+
+                <fieldset>
+
+                    <legend>How would you rate StudentHub?</legend>
+
+                    <div>
+                        <input
+                            type="radio"
+                            id="excellent"
+                            name="rating"
+                            value="excellent">
+
+                        <label for="excellent">Excellent</label>
+                    </div>
+
+                    <div>
+                        <input
+                            type="radio"
+                            id="good"
+                            name="rating"
+                            value="good">
+
+                        <label for="good">Good</label>
+                    </div>
+
+                    <div>
+                        <input
+                            type="radio"
+                            id="average"
+                            name="rating"
+                            value="average">
+
+                        <label for="average">Average</label>
+                    </div>
+
+                    <div>
+                        <input
+                            type="radio"
+                            id="poor"
+                            name="rating"
+                            value="poor">
+
+                        <label for="poor">Poor</label>
+                    </div>
+
+                </fieldset>
+
+                <div>
+                    <label for="feedback">Your Feedback</label>
+
+                    <textarea
+                        id="feedback"
+                        name="feedback"
+                        rows="6"
+                        required></textarea>
+                </div>
+
+                <button type="submit">Submit Feedback</button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
