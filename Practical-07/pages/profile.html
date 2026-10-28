@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Profile</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo-link">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="logo-image">
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button id="menuButton" class="hamburger" type="button" aria-expanded="false" aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="profile.html" aria-current="page">Profile</a></li>
+                <li>
+                    <div class="theme-toggle-wrapper">
+                        <span class="theme-icon" aria-hidden="true">☀️</span>
+                        <label class="theme-toggle" for="themeToggle">
+                            <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode">
+                            <span class="theme-slider"></span>
+                        </label>
+                        <span class="theme-icon" aria-hidden="true">🌙</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="profile-container">
+            <section class="page-heading">
+                <h1>My Student Profile</h1>
+                <p>Manage and review your registered academic details and contact information.</p>
+            </section>
+
+            <section class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar" aria-hidden="true">DK</div>
+                    <div class="profile-header-info">
+                        <h2>Patel Hardi</h2>
+                        <p>Student ID: 2026-BTECH-042 &bull; Active</p>
+                    </div>
+                </div>
+
+                <div class="profile-details">
+                    <div class="profile-row">
+                        <span class="profile-label">Full Name:</span>
+                        <span class="profile-value">Patel Hardi</span>
+                    </div>
+                    <div class="profile-row">
+                        <span class="profile-label">Email Address:</span>
+                        <span class="profile-value">hardipatel@gmail.com</span>
+                    </div>
+                    <div class="profile-row">
+                        <span class="profile-label">Mobile Number:</span>
+                        <span class="profile-value">8732542574</span>
+                    </div>
+                    <div class="profile-row">
+                        <span class="profile-label">Enrolled Course:</span>
+                        <span class="profile-value">B.Tech (Computer Engineering)</span>
+                    </div>
+                    <div class="profile-row">
+                        <span class="profile-label">Academic Year:</span>
+                        <span class="profile-value">2nd Year</span>
+                    </div>
+                    <div class="profile-row">
+                        <span class="profile-label">Gender:</span>
+                        <span class="profile-value">Female</span>
+                    </div>
+                    <div class="profile-row">
+                        <span class="profile-label">Account Status:</span>
+                        <span class="profile-value">Verified Student</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

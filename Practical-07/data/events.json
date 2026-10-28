@@ -1,0 +1,182 @@
+[
+    {
+        "id": 1,
+        "title": "Web Development Workshop",
+        "category": "Workshop",
+        "date": "2026-10-15",
+        "venue": "Computer Lab 1",
+        "organizer": "Computer Department",
+        "description": "A hands-on workshop covering HTML, CSS, JavaScript, responsive design, and modern web development techniques."
+    },
+    {
+        "id": 2,
+        "title": "Cultural Fest",
+        "category": "Cultural",
+        "date": "2026-10-22",
+        "venue": "College Auditorium",
+        "organizer": "Student Council",
+        "description": "Annual cultural celebration featuring music, dance, drama, art, and various student performances."
+    },
+    {
+        "id": 3,
+        "title": "Sports Day",
+        "category": "Sports",
+        "date": "2026-11-05",
+        "venue": "College Ground",
+        "organizer": "Sports Committee",
+        "description": "An exciting day of athletics, team sports, indoor games, and individual competitions for students."
+    },
+    {
+        "id": 4,
+        "title": "AI and Machine Learning Seminar",
+        "category": "Seminar",
+        "date": "2026-11-12",
+        "venue": "Seminar Hall",
+        "organizer": "IT Department",
+        "description": "Learn about artificial intelligence, machine learning applications, current trends, and career opportunities."
+    },
+    {
+        "id": 5,
+        "title": "Entrepreneurship Workshop",
+        "category": "Workshop",
+        "date": "2026-11-18",
+        "venue": "Room 204",
+        "organizer": "Entrepreneurship Cell",
+        "description": "A practical workshop on startup ideas, business models, market research, funding, and entrepreneurship."
+    },
+    {
+        "id": 6,
+        "title": "Coding Competition",
+        "category": "Competition",
+        "date": "2026-11-25",
+        "venue": "Programming Lab",
+        "organizer": "Coding Club",
+        "description": "Test your programming and problem-solving skills through a series of algorithmic coding challenges."
+    },
+    {
+        "id": 7,
+        "title": "Technical Project Exhibition",
+        "category": "Technical",
+        "date": "2026-12-02",
+        "venue": "Main Building",
+        "organizer": "Technical Club",
+        "description": "Students showcase innovative hardware, software, IoT, AI, and engineering projects."
+    },
+    {
+        "id": 8,
+        "title": "Photography Contest",
+        "category": "Cultural",
+        "date": "2026-12-10",
+        "venue": "College Campus",
+        "organizer": "Photography Club",
+        "description": "Capture creative moments around the campus and compete with fellow photography enthusiasts."
+    },
+    {
+        "id": 9,
+        "title": "Career Guidance Seminar",
+        "category": "Career",
+        "date": "2026-12-15",
+        "venue": "Seminar Hall",
+        "organizer": "Training and Placement Cell",
+        "description": "Explore career paths, placement preparation, higher studies, internships, and industry opportunities."
+    },
+    {
+        "id": 10,
+        "title": "Annual Day",
+        "category": "Cultural",
+        "date": "2026-12-20",
+        "venue": "College Auditorium",
+        "organizer": "College Administration",
+        "description": "The annual college celebration featuring awards, performances, cultural activities, and student achievements."
+    },
+    {
+        "id": 11,
+        "title": "24-Hour Hackathon",
+        "category": "Hackathon",
+        "date": "2027-01-10",
+        "venue": "Innovation Lab",
+        "organizer": "Coding Club",
+        "description": "A 24-hour coding marathon where teams build innovative solutions to real-world problems."
+    },
+    {
+        "id": 12,
+        "title": "Competitive Programming Contest",
+        "category": "Competition",
+        "date": "2027-01-18",
+        "venue": "Programming Lab",
+        "organizer": "Coding Club",
+        "description": "Challenge yourself with data structures, algorithms, logical reasoning, and competitive programming problems."
+    },
+    {
+        "id": 13,
+        "title": "Web Development Challenge",
+        "category": "Competition",
+        "date": "2027-01-25",
+        "venue": "Computer Lab 2",
+        "organizer": "Web Development Club",
+        "description": "Build an attractive and responsive website within a limited time using modern web technologies."
+    },
+    {
+        "id": 14,
+        "title": "Robotics Competition",
+        "category": "Technical",
+        "date": "2027-02-05",
+        "venue": "Engineering Workshop",
+        "organizer": "Robotics Club",
+        "description": "Design, build, and program robots to complete challenging tasks in an exciting technical competition."
+    },
+    {
+        "id": 15,
+        "title": "Cybersecurity Capture The Flag",
+        "category": "Cybersecurity",
+        "date": "2027-02-12",
+        "venue": "Cybersecurity Lab",
+        "organizer": "Cybersecurity Club",
+        "description": "Solve cybersecurity challenges involving cryptography, web security, networking, and digital forensics."
+    },
+    {
+        "id": 16,
+        "title": "UI/UX Design Challenge",
+        "category": "Design",
+        "date": "2027-02-20",
+        "venue": "Design Studio",
+        "organizer": "Design Club",
+        "description": "Create an engaging user interface and user experience for a given problem statement."
+    },
+    {
+        "id": 17,
+        "title": "Tech Quiz Competition",
+        "category": "Competition",
+        "date": "2027-02-27",
+        "venue": "Seminar Hall",
+        "organizer": "Technical Club",
+        "description": "Put your technical knowledge to the test with questions covering programming, computers, science, and emerging technologies."
+    },
+    {
+        "id": 18,
+        "title": "Startup Pitch Competition",
+        "category": "Entrepreneurship",
+        "date": "2027-03-05",
+        "venue": "Innovation Centre",
+        "organizer": "Entrepreneurship Cell",
+        "description": "Present your startup idea to a panel of judges and compete for recognition and exciting opportunities."
+    },
+    {
+        "id": 19,
+        "title": "AI Innovation Challenge",
+        "category": "Hackathon",
+        "date": "2027-03-12",
+        "venue": "AI Lab",
+        "organizer": "AI and ML Club",
+        "description": "Develop innovative AI-powered solutions using machine learning, data science, and intelligent technologies."
+    },
+    {
+        "id": 20,
+        "title": "App Development Contest",
+        "category": "Competition",
+        "date": "2027-03-20",
+        "venue": "Mobile Computing Lab",
+        "organizer": "App Development Club",
+        "description": "Design and develop a functional mobile application based on a given theme and demonstrate your development skills."
+    }
+]

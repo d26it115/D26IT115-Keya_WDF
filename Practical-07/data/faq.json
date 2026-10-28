@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "question": "How can I register on StudentHub?",
+        "answer": "Go to the Register page, fill in your details and submit the registration form."
+    },
+    {
+        "id": 2,
+        "question": "How can I login to StudentHub?",
+        "answer": "Click on the Login option in the navigation menu and enter your registered email and password."
+    },
+    {
+        "id": 3,
+        "question": "How can I view college events?",
+        "answer": "Open the Events page to view upcoming college events and their details."
+    },
+    {
+        "id": 4,
+        "question": "Can I search for a particular event?",
+        "answer": "Yes. You can use the search box on the Events page to find events by title, description or organizer."
+    },
+    {
+        "id": 5,
+        "question": "How can I update my profile?",
+        "answer": "Go to the Profile page and update the required student information."
+    },
+    {
+        "id": 6,
+        "question": "Where can I find student information?",
+        "answer": "Student information can be displayed on the Students page using data loaded from students.json."
+    },
+    {
+        "id": 7,
+        "question": "What is the purpose of JSON in StudentHub?",
+        "answer": "JSON is used to store events, student information and frequently asked questions as external data."
+    },
+    {
+        "id": 8,
+        "question": "How is JSON data loaded?",
+        "answer": "The Fetch API is used in JavaScript to retrieve JSON data and display it dynamically on the webpage."
+    }
+]
