@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudentHub - Home</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- ================================
+         NOTIFICATION BANNER
+         ================================ -->
+
+    <div
+        id="notificationBanner"
+        class="notification-banner"
+        role="alert">
+
+        <span>
+            📢 Welcome to StudentHub! Check out our latest events.
+        </span>
+
+        <button
+            id="closeNotification"
+            type="button"
+            aria-label="Close notification">
+
+            ✕
+
+        </button>
+
+    </div>
+
+
+    <!-- ================================
+         HEADER
+         ================================ -->
+
+    <header>
+
+        <nav class="navbar" aria-label="Main navigation">
+
+            <a
+                href="index.html"
+                class="logo">
+
+                StudentHub
+
+            </a>
+
+
+            <!-- Hamburger Button -->
+
+            <button
+                id="menuButton"
+                class="hamburger"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false">
+
+                ☰
+
+            </button>
+
+
+            <!-- Navigation Menu -->
+
+            <ul
+                id="navigationMenu"
+                class="navigation-menu">
+
+                <li>
+                    <a
+                        href="index.html"
+                        aria-current="page">
+
+                        Home
+
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="events.html">
+                        Events
+                    </a>
+                </li>
+
+                <li>
+                    <a href="faq.html">
+                        FAQ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+                <li>
+                    <a href="login.html">
+                        Login
+                    </a>
+                </li>
+
+                <li>
+                    <a href="register.html">
+                        Register
+                    </a>
+                </li>
+
+                <li>
+                    <button
+                        id="themeButton"
+                        class="theme-button"
+                        type="button">
+
+                        🌙 Dark Mode
+
+                    </button>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================================
+         MAIN CONTENT
+         ================================ -->
+
+    <main>
+
+
+        <!-- HERO SECTION -->
+
+        <section class="hero">
+
+            <h1>
+                Welcome to StudentHub
+            </h1>
+
+            <p>
+                Your one-stop platform for student information,
+                college events and activities.
+            </p>
+
+            <button
+                id="openModal"
+                class="primary-button"
+                type="button">
+
+                Learn More
+
+            </button>
+
+        </section>
+
+
+
+        <!-- ================================
+             CONTENT SLIDER
+             ================================ -->
+
+        <section
+            class="slider-section"
+            aria-labelledby="sliderHeading">
+
+            <h2 id="sliderHeading">
+                StudentHub Highlights
+            </h2>
+
+
+            <div class="slider">
+
+                <!-- Slide 1 -->
+
+                <article
+                    class="slide active">
+
+                    <div class="slide-content">
+
+                        <span class="slide-icon">
+                            🎓
+                        </span>
+
+                        <h3>
+                            Student Resources
+                        </h3>
+
+                        <p>
+                            Access useful information,
+                            student resources and important
+                            college updates.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Slide 2 -->
+
+                <article class="slide">
+
+                    <div class="slide-content">
+
+                        <span class="slide-icon">
+                            🎉
+                        </span>
+
+                        <h3>
+                            College Events
+                        </h3>
+
+                        <p>
+                            Stay updated with workshops,
+                            cultural events and college
+                            activities.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Slide 3 -->
+
+                <article class="slide">
+
+                    <div class="slide-content">
+
+                        <span class="slide-icon">
+                            💬
+                        </span>
+
+                        <h3>
+                            Student Feedback
+                        </h3>
+
+                        <p>
+                            Share your suggestions and help
+                            us improve StudentHub.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- Slider Controls -->
+
+            <div class="slider-controls">
+
+                <button
+                    id="previousSlide"
+                    type="button">
+
+                    ❮ Previous
+
+                </button>
+
+                <span
+                    id="slideNumber"
+                    aria-live="polite">
+
+                    1 / 3
+
+                </span>
+
+                <button
+                    id="nextSlide"
+                    type="button">
+
+                    Next ❯
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================
+             FEATURES
+             ================================ -->
+
+        <section
+            class="features"
+            aria-labelledby="featuresHeading">
+
+            <h2 id="featuresHeading">
+                StudentHub Features
+            </h2>
+
+
+            <article class="feature-card">
+
+                <h3>
+                    Student Profile
+                </h3>
+
+                <p>
+                    Manage your student information
+                    and personal profile.
+                </p>
+
+                <a href="profile.html">
+                    View Profile
+                </a>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <h3>
+                    College Events
+                </h3>
+
+                <p>
+                    Find upcoming workshops,
+                    cultural events and activities.
+                </p>
+
+                <a href="events.html">
+                    View Events
+                </a>
+
+            </article>
+
+
+            <article class="feature-card">
+
+                <h3>
+                    Frequently Asked Questions
+                </h3>
+
+                <p>
+                    Find answers to common StudentHub
+                    questions.
+                </p>
+
+                <a href="faq.html">
+                    View FAQ
+                </a>
+
+            </article>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================================
+         MODAL POPUP
+         ================================ -->
+
+    <div
+        id="modal"
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle">
+
+        <div class="modal-content">
+
+            <button
+                id="closeModal"
+                class="modal-close"
+                type="button"
+                aria-label="Close popup">
+
+                ✕
+
+            </button>
+
+
+            <h2 id="modalTitle">
+                Welcome to StudentHub
+            </h2>
+
+            <p>
+                StudentHub is designed to make student life
+                easier by providing college information,
+                events, resources and communication tools
+                in one place.
+            </p>
+
+            <p>
+                Explore the different sections of the website
+                to learn more.
+            </p>
+
+            <button
+                id="modalOkay"
+                class="primary-button"
+                type="button">
+
+                Got it
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================
+         FOOTER
+         ================================ -->
+
+    <footer>
+
+        <p>
+            &copy; 2026 StudentHub. All rights reserved.
+        </p>
+
+    </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="../js/script.js"></script>
+
+</body>
+
+</html>
