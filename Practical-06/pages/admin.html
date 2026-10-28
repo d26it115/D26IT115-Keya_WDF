@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo-link">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="logo-image">
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button id="menuButton" class="hamburger" type="button" aria-expanded="false" aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="about.html" >About</a></li>
+                <li><a href="events.html" >Events</a></li>
+                <li><a href="faq.html" >FAQ</a></li>
+                <li><a href="contact.html" >Contact</a></li>
+                <li><a href="login.html" >Login</a></li>
+                <li><a href="register.html" >Register</a></li>
+                <li>
+                    <button id="themeButton" class="theme-button" type="button">
+                        🌙 Dark Mode
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-heading">
+            <h1>Admin Panel</h1>
+            <p>Manage students, events and feedback from this panel.</p>
+        </section>
+
+        <section class="content-grid">
+            <article class="content-card">
+                <h2>Student Management</h2>
+                <p>View and manage registered students.</p>
+                <button type="button">Manage Students</button>
+            </article>
+            <article class="content-card">
+                <h2>Event Management</h2>
+                <p>Create and manage college events.</p>
+                <a href="events.html">Manage Events</a>
+            </article>
+            <article class="content-card">
+                <h2>Feedback Management</h2>
+                <p>Review feedback submitted by students.</p>
+                <a href="feedback.html">View Feedback</a>
+            </article>
+        </section>
+
+        <section class="stats">
+            <div class="stat"><h3>Registered Students</h3><dd>250</dd></div>
+            <div class="stat"><h3>Upcoming Events</h3><dd>12</dd></div>
+            <div class="stat"><h3>Feedback Received</h3><dd>85</dd></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
