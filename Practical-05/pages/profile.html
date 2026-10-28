@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Profile</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<header>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo-link">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="logo-image">
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button id="menuButton" class="hamburger" type="button" aria-expanded="false" aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="about.html" >About</a></li>
+                <li><a href="events.html" >Events</a></li>
+                <li><a href="faq.html" >FAQ</a></li>
+                <li><a href="contact.html" >Contact</a></li>
+                <li><a href="login.html" >Login</a></li>
+                <li><a href="register.html" >Register</a></li>
+                <li>
+                    <button id="themeButton" class="theme-button" type="button">
+                        🌙 Dark Mode
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="content-section">
+            <h1>My Profile</h1>
+            <form action="#" method="post">
+                <div><label for="profileName">Full Name</label><input type="text" id="profileName"></div>
+                <div><label for="profileEmail">Email Address</label><input type="email" id="profileEmail"></div>
+                <div><label for="studentId">Student ID</label><input type="text" id="studentId"></div>
+                <div><label for="profileCourse">Course</label><input type="text" id="profileCourse"></div>
+                <div>
+                    <label for="profileYear">Year</label>
+                    <select id="profileYear">
+                        <option value="">Select Year</option>
+                        <option>First Year</option>
+                        <option>Second Year</option>
+                        <option>Third Year</option>
+                        <option>Fourth Year</option>
+                    </select>
+                </div>
+                <div><label for="profilePhone">Phone Number</label><input type="tel" id="profilePhone"></div>
+                <button type="submit">Update Profile</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
