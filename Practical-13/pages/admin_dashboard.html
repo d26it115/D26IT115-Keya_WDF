@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudentHub - Admin Dashboard</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+
+            <a href="index.html" class="logo-link">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="logo-image">
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button
+                id="menuButton"
+                class="hamburger"
+                type="button"
+                aria-expanded="false"
+                aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="profile.html">Profile</a></li>
+
+                <li>
+                    <a href="../php/logout.php" class="logout-link">
+                        Logout
+                    </a>
+                </li>
+
+                <li>
+                    <div class="theme-toggle-wrapper">
+
+                        <span class="theme-icon" aria-hidden="true">☀️</span>
+
+                        <label class="theme-toggle" for="themeToggle">
+                            <input
+                                type="checkbox"
+                                id="themeToggle"
+                                aria-label="Toggle dark mode">
+                            <span class="theme-slider"></span>
+                        </label>
+
+                        <span class="theme-icon" aria-hidden="true">🌙</span>
+
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Main content -->
+    <main>
+
+        <section class="page-heading">
+            <h1>Admin Dashboard</h1>
+
+            <p>
+                Welcome to the StudentHub administration panel.
+                Manage students, events, and registrations from here.
+            </p>
+        </section>
+
+
+        <!-- Admin cards -->
+        <section class="content-grid">
+
+            <!-- Manage Students -->
+            <article class="content-card">
+                <h2>Manage Students</h2>
+
+                <p>
+                    View and manage registered student information
+                    stored in the database.
+                </p>
+
+                <a href="student_management.html" class="hero-button">
+                    View Students
+                </a>
+            </article>
+
+
+            <!-- Manage Events -->
+            <article class="content-card">
+                <h2>Manage Events</h2>
+
+                <p>
+                    Add, update, and manage campus events
+                    available to students.
+                </p>
+
+                <a href="events.html" class="hero-button">
+                    View Events
+                </a>
+            </article>
+
+
+            <!-- Registrations -->
+            <article class="content-card">
+                <h2>Registrations</h2>
+
+                <p>
+                    View student registrations and event
+                    participation information.
+                </p>
+
+                <a href="../php/view_registrations.php" class="hero-button">
+                    View Registrations
+                </a>
+            </article>
+
+        </section>
+
+
+        <!-- Admin information -->
+        <section class="content-section">
+            <h2>Administration</h2>
+
+            <p>
+                Only users with the <strong>admin</strong> role
+                can access this dashboard.
+            </p>
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+
+    <script src="../js/script.js"></script>
+
+
+    <!-- Role-based access check -->
+    <script>
+        (async function () {
+            try {
+                const response = await fetch(
+                    "../php/session_status.php",
+                    {
+                        credentials: "same-origin",
+                        cache: "no-store"
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Session verification failed.");
+                }
+
+                const data = await response.json();
+
+                if (!data.logged_in) {
+                    window.location.replace(
+                        "login.html?error=" +
+                        encodeURIComponent(
+                            "Please log in to access this page."
+                        )
+                    );
+                    return;
+                }
+
+                if (data.role !== "admin") {
+                    window.location.replace(
+                        "dashboard.html?error=" +
+                        encodeURIComponent(
+                            "You do not have permission to access the admin dashboard."
+                        )
+                    );
+                }
+
+            } catch (error) {
+                window.location.replace(
+                    "login.html?error=" +
+                    encodeURIComponent(
+                        "Unable to verify your access. Please log in again."
+                    )
+                );
+            }
+        })();
+    </script>
+
+</body>
+</html>

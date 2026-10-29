@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudentHub - Student Management</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<header>
+
+    <nav class="navbar" aria-label="Main navigation">
+
+        <!-- Logo -->
+        <a href="index.html" class="logo-link">
+            <img
+                src="../images/logo.png"
+                alt="StudentHub Logo"
+                class="logo-image"
+            >
+
+            <span class="logo-text">
+                StudentHub
+            </span>
+        </a>
+
+
+        <!-- Mobile menu -->
+        <button
+            id="menuButton"
+            class="hamburger"
+            type="button"
+            aria-expanded="false"
+            aria-label="Open navigation menu"
+        >
+            ☰
+        </button>
+
+
+        <!-- Navigation -->
+        <ul id="navigationMenu" class="navigation-menu">
+
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="about.html">
+                    About
+                </a>
+            </li>
+
+            <li>
+                <a href="events.html">
+                    Events
+                </a>
+            </li>
+
+            <li>
+                <a href="faq.html">
+                    FAQ
+                </a>
+            </li>
+
+            <li>
+                <a href="contact.html">
+                    Contact
+                </a>
+            </li>
+
+            <li>
+                <a href="feedback.html">
+                    Feedback
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="admin_dashboard.html">
+                    Admin
+                </a>
+            </li>
+
+            <!-- Dark mode -->
+            <li>
+
+                <div class="theme-toggle-wrapper">
+
+                    <span
+                        class="theme-icon"
+                        aria-hidden="true"
+                    >
+                        ☀️
+                    </span>
+
+                    <label
+                        class="theme-toggle"
+                        for="themeToggle"
+                    >
+
+                        <input
+                            type="checkbox"
+                            id="themeToggle"
+                            aria-label="Toggle dark mode"
+                        >
+
+                        <span class="theme-slider"></span>
+
+                    </label>
+
+                    <span
+                        class="theme-icon"
+                        aria-hidden="true"
+                    >
+                        🌙
+                    </span>
+
+                </div>
+
+            </li>
+
+            <!-- Logout -->
+            <li>
+
+                <a
+                    href="../php/logout.php"
+                    class="logout-link"
+                >
+                    Logout
+                </a>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+    <!-- Page heading -->
+    <section class="page-heading">
+
+        <h1>
+            Student Management
+        </h1>
+
+        <p>
+            Add, view, edit, delete, search, and filter student records.
+        </p>
+
+    </section>
+
+
+    <!-- Message area -->
+    <section class="content-section">
+
+        <div
+            id="messageBox"
+            class="success-message"
+            role="status"
+            style="display: none;"
+        >
+        </div>
+
+    </section>
+
+
+    <!-- Add Student -->
+    <section class="content-section">
+
+        <h2>
+            Add New Student
+        </h2>
+
+        <form
+            id="studentForm"
+            action="../php/add_student.php"
+            method="post"
+        >
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter student name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="student@example.com"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="mobile">
+                    Mobile Number
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="mobile"
+                    name="mobile"
+                    placeholder="Enter mobile number"
+                    maxlength="15"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="course">
+                    Course
+                    <span class="required">*</span>
+                </label>
+
+                <select
+                    id="course"
+                    name="course"
+                    required
+                >
+
+                    <option value="">
+                        Select Course
+                    </option>
+
+                    <option value="B.Tech">
+                        B.Tech
+                    </option>
+
+                    <option value="BCA">
+                        BCA
+                    </option>
+
+                    <option value="MCA">
+                        MCA
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="year">
+                    Year
+                    <span class="required">*</span>
+                </label>
+
+                <select
+                    id="year"
+                    name="year"
+                    required
+                >
+
+                    <option value="">
+                        Select Year
+                    </option>
+
+                    <option value="1st Year">
+                        1st Year
+                    </option>
+
+                    <option value="2nd Year">
+                        2nd Year
+                    </option>
+
+                    <option value="3rd Year">
+                        3rd Year
+                    </option>
+
+                    <option value="4th Year">
+                        4th Year
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="gender">
+                    Gender
+                    <span class="required">*</span>
+                </label>
+
+                <select
+                    id="gender"
+                    name="gender"
+                    required
+                >
+
+                    <option value="">
+                        Select Gender
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+            >
+                Add Student
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Search and Filter -->
+    <section class="content-section">
+
+        <h2>
+            Search and Filter Students
+        </h2>
+
+
+        <form
+            id="searchFilterForm"
+            method="get"
+            action="../php/students.php"
+        >
+
+            <div class="form-group">
+
+                <label for="search">
+                    Search
+                </label>
+
+                <input
+                    type="search"
+                    id="search"
+                    name="search"
+                    placeholder="Search by name, email, or course"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="filterCourse">
+                    Course
+                </label>
+
+                <select
+                    id="filterCourse"
+                    name="course"
+                >
+
+                    <option value="">
+                        All Courses
+                    </option>
+
+                    <option value="B.Tech">
+                        B.Tech
+                    </option>
+
+                    <option value="BCA">
+                        BCA
+                    </option>
+
+                    <option value="MCA">
+                        MCA
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="filterYear">
+                    Year
+                </label>
+
+                <select
+                    id="filterYear"
+                    name="year"
+                >
+
+                    <option value="">
+                        All Years
+                    </option>
+
+                    <option value="1st Year">
+                        1st Year
+                    </option>
+
+                    <option value="2nd Year">
+                        2nd Year
+                    </option>
+
+                    <option value="3rd Year">
+                        3rd Year
+                    </option>
+
+                    <option value="4th Year">
+                        4th Year
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="filterGender">
+                    Gender
+                </label>
+
+                <select
+                    id="filterGender"
+                    name="gender"
+                >
+
+                    <option value="">
+                        All Genders
+                    </option>
+
+                    <option value="Male">
+                        Male
+                    </option>
+
+                    <option value="Female">
+                        Female
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+            >
+                Search / Filter
+            </button>
+
+
+            <button
+                type="button"
+                id="clearFilters"
+            >
+                Clear Filters
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Student records -->
+    <section class="content-section">
+
+        <div
+            style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 15px;
+                flex-wrap: wrap;
+            "
+        >
+
+            <div>
+
+                <h2>
+                    Student Records
+                </h2>
+
+                <p>
+                    View and manage all registered student records.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    Total Students:
+                </strong>
+
+                <span id="studentCount">
+                    0
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Table -->
+        <div
+            style="
+                overflow-x: auto;
+                margin-top: 20px;
+            "
+        >
+
+            <table
+                id="studentsTable"
+                style="
+                    width: 100%;
+                    border-collapse: collapse;
+                    min-width: 900px;
+                "
+            >
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Email
+                        </th>
+
+                        <th>
+                            Mobile
+                        </th>
+
+                        <th>
+                            Course
+                        </th>
+
+                        <th>
+                            Year
+                        </th>
+
+                        <th>
+                            Gender
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="studentsTableBody">
+
+                    <tr>
+
+                        <td
+                            colspan="8"
+                            style="text-align: center;"
+                        >
+                            Loading student records...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- Pagination -->
+    <section
+        class="content-section"
+        id="paginationSection"
+    >
+
+        <div
+            style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                flex-wrap: wrap;
+            "
+        >
+
+            <button
+                type="button"
+                id="previousPage"
+            >
+                Previous
+            </button>
+
+
+            <span id="pageInfo">
+                Page 1
+            </span>
+
+
+            <button
+                type="button"
+                id="nextPage"
+            >
+                Next
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 StudentHub. All rights reserved.
+    </p>
+
+</footer>
+
+
+<script src="../js/script.js"></script>
+
+
+<script>
+
+    /*
+    |--------------------------------------------------------------------------
+    | Student Management Page
+    |--------------------------------------------------------------------------
+    */
+
+    const studentsTableBody =
+        document.getElementById("studentsTableBody");
+
+    const studentCount =
+        document.getElementById("studentCount");
+
+    const messageBox =
+        document.getElementById("messageBox");
+
+    const searchFilterForm =
+        document.getElementById("searchFilterForm");
+
+    const clearFilters =
+        document.getElementById("clearFilters");
+
+    const previousPage =
+        document.getElementById("previousPage");
+
+    const nextPage =
+        document.getElementById("nextPage");
+
+    const pageInfo =
+        document.getElementById("pageInfo");
+
+
+    let currentPage = 1;
+
+    const recordsPerPage = 5;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Show Message
+    |--------------------------------------------------------------------------
+    */
+
+    function showMessage(message, type = "success") {
+
+        messageBox.textContent = message;
+
+        messageBox.style.display = "block";
+
+        if (type === "error") {
+
+            messageBox.className = "error-message-box";
+
+        } else {
+
+            messageBox.className = "success-message";
+
+        }
+
+        setTimeout(function () {
+
+            messageBox.style.display = "none";
+
+        }, 4000);
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Load Students
+    |--------------------------------------------------------------------------
+    */
+
+    async function loadStudents() {
+
+        try {
+
+            const formData =
+                new FormData(searchFilterForm);
+
+            const params =
+                new URLSearchParams(formData);
+
+            params.set(
+                "page",
+                currentPage
+            );
+
+            params.set(
+                "limit",
+                recordsPerPage
+            );
+
+
+            const response =
+                await fetch(
+                    "../php/students.php?" +
+                    params.toString(),
+                    {
+                        method: "GET",
+                        credentials: "same-origin",
+                        cache: "no-store"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to load student records."
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (!data.success) {
+
+                throw new Error(
+                    data.message ||
+                    "Unable to load student records."
+                );
+
+            }
+
+
+            displayStudents(
+                data.students || []
+            );
+
+
+            studentCount.textContent =
+                data.total || 0;
+
+
+            updatePagination(
+                data.total || 0
+            );
+
+
+        } catch (error) {
+
+            studentsTableBody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="8"
+                        style="text-align: center;"
+                    >
+                        Unable to load student records.
+                    </td>
+                </tr>
+            `;
+
+            studentCount.textContent = "0";
+
+            showMessage(
+                error.message,
+                "error"
+            );
+
+        }
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Display Students
+    |--------------------------------------------------------------------------
+    */
+
+    function displayStudents(students) {
+
+        studentsTableBody.innerHTML = "";
+
+
+        if (students.length === 0) {
+
+            studentsTableBody.innerHTML = `
+                <tr>
+                    <td
+                        colspan="8"
+                        style="text-align: center;"
+                    >
+                        No student records found.
+                    </td>
+                </tr>
+            `;
+
+            return;
+
+        }
+
+
+        students.forEach(function (student) {
+
+            const row =
+                document.createElement("tr");
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${escapeHTML(student.student_id)}
+                </td>
+
+                <td>
+                    ${escapeHTML(student.name)}
+                </td>
+
+                <td>
+                    ${escapeHTML(student.email)}
+                </td>
+
+                <td>
+                    ${escapeHTML(student.mobile)}
+                </td>
+
+                <td>
+                    ${escapeHTML(student.course)}
+                </td>
+
+                <td>
+                    ${escapeHTML(student.year)}
+                </td>
+
+                <td>
+                    ${escapeHTML(student.gender)}
+                </td>
+
+                <td>
+
+                    <a
+                        href="edit_student.html?id=${encodeURIComponent(student.student_id)}"
+                    >
+                        Edit
+                    </a>
+
+                    &nbsp; | &nbsp;
+
+                    <a
+                        href="../php/delete_student.php?id=${encodeURIComponent(student.student_id)}"
+                        onclick="return confirmDelete('${escapeJS(student.name)}');"
+                    >
+                        Delete
+                    </a>
+
+                </td>
+
+            `;
+
+
+            studentsTableBody.appendChild(row);
+
+        });
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | HTML Escape
+    |--------------------------------------------------------------------------
+    */
+
+    function escapeHTML(value) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent =
+            value ?? "";
+
+        return div.innerHTML;
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | JavaScript Escape
+    |--------------------------------------------------------------------------
+    */
+
+    function escapeJS(value) {
+
+        return String(value ?? "")
+            .replace(/\\/g, "\\\\")
+            .replace(/'/g, "\\'")
+            .replace(/"/g, '\\"')
+            .replace(/\n/g, "\\n")
+            .replace(/\r/g, "\\r");
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Delete Confirmation
+    |--------------------------------------------------------------------------
+    */
+
+    function confirmDelete(name) {
+
+        return confirm(
+            "Are you sure you want to delete the student \"" +
+            name +
+            "\"?"
+        );
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Pagination
+    |--------------------------------------------------------------------------
+    */
+
+    function updatePagination(total) {
+
+        const totalPages =
+            Math.max(
+                1,
+                Math.ceil(
+                    total / recordsPerPage
+                )
+            );
+
+
+        pageInfo.textContent =
+            "Page " +
+            currentPage +
+            " of " +
+            totalPages;
+
+
+        previousPage.disabled =
+            currentPage <= 1;
+
+
+        nextPage.disabled =
+            currentPage >= totalPages;
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Previous Page
+    |--------------------------------------------------------------------------
+    */
+
+    previousPage.addEventListener(
+        "click",
+        function () {
+
+            if (currentPage > 1) {
+
+                currentPage--;
+
+                loadStudents();
+
+            }
+
+        }
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Next Page
+    |--------------------------------------------------------------------------
+    */
+
+    nextPage.addEventListener(
+        "click",
+        function () {
+
+            currentPage++;
+
+            loadStudents();
+
+        }
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Search / Filter
+    |--------------------------------------------------------------------------
+    */
+
+    searchFilterForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+            currentPage = 1;
+
+            loadStudents();
+
+        }
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Clear Filters
+    |--------------------------------------------------------------------------
+    */
+
+    clearFilters.addEventListener(
+        "click",
+        function () {
+
+            document.getElementById(
+                "search"
+            ).value = "";
+
+            document.getElementById(
+                "filterCourse"
+            ).value = "";
+
+            document.getElementById(
+                "filterYear"
+            ).value = "";
+
+            document.getElementById(
+                "filterGender"
+            ).value = "";
+
+
+            currentPage = 1;
+
+            loadStudents();
+
+        }
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Protect Admin Page
+    |--------------------------------------------------------------------------
+    */
+
+    async function checkAdminAccess() {
+
+        try {
+
+            const response =
+                await fetch(
+                    "../php/session_status.php",
+                    {
+                        credentials: "same-origin",
+                        cache: "no-store"
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!data.logged_in) {
+
+                window.location.href =
+                    "login.html?error=" +
+                    encodeURIComponent(
+                        data.message ||
+                        "Please log in to access student management."
+                    );
+
+                return false;
+
+            }
+
+
+            if (data.role !== "admin") {
+
+                window.location.href =
+                    "dashboard.html?error=" +
+                    encodeURIComponent(
+                        "You do not have permission to access student management."
+                    );
+
+                return false;
+
+            }
+
+
+            return true;
+
+        } catch (error) {
+
+            window.location.href =
+                "login.html?error=" +
+                encodeURIComponent(
+                    "Unable to verify your session."
+                );
+
+            return false;
+
+        }
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Check URL Messages
+    |--------------------------------------------------------------------------
+    */
+
+    function checkURLMessage() {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const success =
+            params.get("success");
+
+        const error =
+            params.get("error");
+
+
+        if (success) {
+
+            showMessage(
+                success,
+                "success"
+            );
+
+        }
+
+
+        if (error) {
+
+            showMessage(
+                error,
+                "error"
+            );
+
+        }
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Start Page
+    |--------------------------------------------------------------------------
+    */
+
+    (async function () {
+
+        const allowed =
+            await checkAdminAccess();
+
+
+        if (!allowed) {
+
+            return;
+
+        }
+
+
+        checkURLMessage();
+
+        loadStudents();
+
+    })();
+
+</script>
+
+</body>
+
+</html>
