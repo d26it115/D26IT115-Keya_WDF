@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Login</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar" aria-label="Main navigation">
+
+        <a href="index.html" class="logo-link">
+            <img src="../images/logo.png" alt="StudentHub Logo" class="logo-image">
+            <span class="logo-text">StudentHub</span>
+        </a>
+
+        <button
+            id="menuButton"
+            class="hamburger"
+            type="button"
+            aria-expanded="false"
+            aria-label="Open navigation menu">
+            ☰
+        </button>
+
+        <ul id="navigationMenu" class="navigation-menu">
+
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="login.html" aria-current="page">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="profile.html">Profile</a></li>
+
+            <li>
+                <div class="theme-toggle-wrapper">
+
+                    <span class="theme-icon" aria-hidden="true">☀️</span>
+
+                    <label class="theme-toggle" for="themeToggle">
+                        <input
+                            type="checkbox"
+                            id="themeToggle"
+                            aria-label="Toggle dark mode">
+                        <span class="theme-slider"></span>
+                    </label>
+
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
+
+                </div>
+            </li>
+
+        </ul>
+    </nav>
+</header>
+
+
+<main>
+
+    <section class="page-heading">
+
+        <h1>Student Login</h1>
+
+        <p>
+            Access your StudentHub dashboard, registered events,
+            and academic records.
+        </p>
+
+    </section>
+
+
+    <section class="content-section">
+
+    <form
+        action="../php/login.php"
+        method="post"
+        autocomplete="on">
+
+        <div class="form-group">
+
+            <label for="loginEmail">
+                Email Address
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                name="email"
+                autocomplete="email"
+                placeholder="student@example.com"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="loginPassword">
+                Password
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                name="password"
+                autocomplete="current-password"
+                placeholder="Enter your account password"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label class="terms-label">
+
+                <input
+                    type="checkbox"
+                    id="remember"
+                    name="remember"
+                    value="1">
+
+                Remember me on this browser
+
+            </label>
+
+        </div>
+
+
+        <button type="submit">
+            Sign In
+        </button>
+
+
+        <p class="login-link">
+
+            Don't have an account yet?
+            <a href="register.html">
+                Register here
+            </a>
+
+        </p>
+
+    </form>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        &copy; 2026 StudentHub. All rights reserved.
+    </p>
+
+</footer>
+
+
+<script src="../js/script.js?v=10"></script>
+
+</body>
+</html>
