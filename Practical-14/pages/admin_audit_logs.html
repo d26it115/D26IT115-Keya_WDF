@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Audit Logs</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .audit-intro,
+        .audit-section {
+            background: var(--card-bg, #fff);
+            border: 1px solid #dce3ed;
+            border-radius: 14px;
+            padding: 24px;
+            margin: 24px auto;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .audit-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .audit-toolbar input,
+        .audit-toolbar select {
+            min-height: 42px;
+            padding: 9px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font: inherit;
+        }
+
+        .audit-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .audit-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        .audit-table th,
+        .audit-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
+            vertical-align: top;
+            overflow-wrap: anywhere;
+        }
+
+        .audit-table th {
+            background: #f1f5f9;
+            color: #1e293b;
+            white-space: nowrap;
+        }
+
+        .audit-status {
+            margin: 12px 0;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .audit-error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .audit-action {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 20px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .audit-count {
+            color: #475569;
+            margin-left: auto;
+        }
+
+        @media (max-width: 600px) {
+            .audit-intro,
+            .audit-section {
+                padding: 16px;
+            }
+
+            .audit-count {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo-link">
+                <img
+                    src="../images/logo.png"
+                    alt="StudentHub Logo"
+                    class="logo-image"
+                >
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button
+                id="menuButton"
+                class="hamburger"
+                type="button"
+                aria-expanded="false"
+                aria-label="Open navigation menu"
+            >☰</button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin_dashboard.html">Admin Dashboard</a></li>
+                <li><a href="event_management.html">Manage Events</a></li>
+                <li><a href="admin_audit_logs.html" aria-current="page">Audit Logs</a></li>
+                <li><a href="../php/logout.php" class="logout-link">Logout</a></li>
+                <li>
+                    <div class="theme-toggle-wrapper">
+                        <span class="theme-icon" aria-hidden="true">☀️</span>
+                        <label class="theme-toggle" for="themeToggle">
+                            <input
+                                type="checkbox"
+                                id="themeToggle"
+                                aria-label="Toggle dark mode"
+                            >
+                            <span class="theme-slider"></span>
+                        </label>
+                        <span class="theme-icon" aria-hidden="true">🌙</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="audit-intro">
+            <h1>Admin Audit Logs</h1>
+            <p>
+                Review administrative actions recorded by StudentHub,
+                including event creation, updates, and deletions.
+            </p>
+        </section>
+
+        <section class="audit-section">
+            <h2>Activity History</h2>
+
+            <p id="auditStatus" class="audit-status" role="status">
+                Loading audit logs...
+            </p>
+
+            <div class="audit-toolbar">
+                <input
+                    type="search"
+                    id="auditSearch"
+                    placeholder="Search user, action, or details"
+                    aria-label="Search audit logs"
+                >
+
+                <select id="actionFilter" aria-label="Filter by action">
+                    <option value="">All actions</option>
+                    <option value="EVENT_CREATED">Event created</option>
+                    <option value="EVENT_UPDATED">Event updated</option>
+                    <option value="EVENT_DELETED">Event deleted</option>
+                </select>
+
+                <button type="button" id="refreshAuditLogs" class="hero-button">
+                    Refresh
+                </button>
+
+                <span id="auditCount" class="audit-count">
+                    0 records
+                </span>
+            </div>
+
+            <div class="audit-table-wrapper">
+                <table class="audit-table">
+                    <thead>
+                        <tr>
+                            <th>Log ID</th>
+                            <th>User</th>
+                            <th>Role</th>
+                            <th>Action</th>
+                            <th>Details</th>
+                            <th>IP Address</th>
+                            <th>Date and Time</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="auditTableBody">
+                        <tr>
+                            <td colspan="7">Loading records...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/dynamic_menu.js"></script>
+
+    <script>
+        "use strict";
+
+        let auditLogs = [];
+
+        const auditStatus = document.getElementById("auditStatus");
+        const auditTableBody = document.getElementById("auditTableBody");
+        const auditSearch = document.getElementById("auditSearch");
+        const actionFilter = document.getElementById("actionFilter");
+        const auditCount = document.getElementById("auditCount");
+
+        function showAuditMessage(message, isError = false) {
+            auditStatus.textContent = message;
+            auditStatus.className = isError
+                ? "audit-status audit-error"
+                : "audit-status";
+        }
+
+        function addCell(row, value) {
+            const cell = document.createElement("td");
+            cell.textContent = value === null || value === undefined || value === ""
+                ? "—"
+                : String(value);
+
+            row.appendChild(cell);
+            return cell;
+        }
+
+        function renderAuditLogs() {
+            const searchTerm = auditSearch.value.trim().toLowerCase();
+            const selectedAction = actionFilter.value;
+
+            const filteredLogs = auditLogs.filter(log => {
+                const matchesSearch = [
+                    log.log_id,
+                    log.user_name,
+                    log.user_role,
+                    log.action,
+                    log.details,
+                    log.ip_address,
+                    log.created_at
+                ].some(value =>
+                    String(value ?? "").toLowerCase().includes(searchTerm)
+                );
+
+                const matchesAction =
+                    !selectedAction || log.action === selectedAction;
+
+                return matchesSearch && matchesAction;
+            });
+
+            auditTableBody.replaceChildren();
+
+            if (filteredLogs.length === 0) {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+
+                cell.colSpan = 7;
+                cell.textContent = auditLogs.length === 0
+                    ? "No audit records found."
+                    : "No records match your search.";
+
+                row.appendChild(cell);
+                auditTableBody.appendChild(row);
+            } else {
+                filteredLogs.forEach(log => {
+                    const row = document.createElement("tr");
+
+                    addCell(row, log.log_id);
+
+                    const userCell = addCell(row, log.user_name);
+                    if (log.user_id !== null && log.user_id !== undefined) {
+                        userCell.title = "User ID: " + log.user_id;
+                    }
+
+                    addCell(row, log.user_role);
+
+                    const actionCell = document.createElement("td");
+                    const actionBadge = document.createElement("span");
+
+                    actionBadge.className = "audit-action";
+                    actionBadge.textContent = log.action;
+                    actionCell.appendChild(actionBadge);
+                    row.appendChild(actionCell);
+
+                    addCell(row, log.details);
+                    addCell(row, log.ip_address);
+                    addCell(row, log.created_at);
+
+                    auditTableBody.appendChild(row);
+                });
+            }
+
+            auditCount.textContent =
+                filteredLogs.length + " of " + auditLogs.length + " records";
+        }
+
+        async function loadAuditLogs() {
+            showAuditMessage("Loading audit logs...");
+
+            try {
+                const response = await fetch("../php/admin_audit_logs.php", {
+                    method: "GET",
+                    credentials: "same-origin",
+                    cache: "no-store",
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                });
+
+                const result = await response.json();
+
+                if (response.status === 401) {
+                    window.location.replace(
+                        "login.html?error=" +
+                        encodeURIComponent("Please log in to continue.")
+                    );
+                    return;
+                }
+
+                if (response.status === 403) {
+                    window.location.replace(
+                        "dashboard.html?error=" +
+                        encodeURIComponent("Only administrators can view audit logs.")
+                    );
+                    return;
+                }
+
+                if (!response.ok || !result.success) {
+                    throw new Error(
+                        result.message || "Unable to load audit logs."
+                    );
+                }
+
+                auditLogs = Array.isArray(result.logs) ? result.logs : [];
+
+                renderAuditLogs();
+
+                showAuditMessage(
+                    "Audit logs loaded successfully. " +
+                    auditLogs.length + " records retrieved."
+                );
+            } catch (error) {
+                auditLogs = [];
+                auditTableBody.replaceChildren();
+
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+
+                cell.colSpan = 7;
+                cell.textContent = "Unable to load audit records.";
+                row.appendChild(cell);
+                auditTableBody.appendChild(row);
+
+                auditCount.textContent = "0 records";
+                showAuditMessage(error.message, true);
+            }
+        }
+
+        auditSearch.addEventListener("input", renderAuditLogs);
+        actionFilter.addEventListener("change", renderAuditLogs);
+        document.getElementById("refreshAuditLogs")
+            .addEventListener("click", loadAuditLogs);
+
+        loadAuditLogs();
+    </script>
+</body>
+</html>

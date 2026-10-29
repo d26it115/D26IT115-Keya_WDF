@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Events</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo-link">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="logo-image">
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button id="menuButton" class="hamburger" type="button" aria-expanded="false" aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html" aria-current="page">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li>
+                    <div class="theme-toggle-wrapper">
+                        <span class="theme-icon" aria-hidden="true">☀️</span>
+                        <label class="theme-toggle" for="themeToggle">
+                            <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode">
+                            <span class="theme-slider"></span>
+                        </label>
+                        <span class="theme-icon" aria-hidden="true">🌙</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-heading">
+            <h1>Campus Events & Activities</h1>
+            <p>Explore upcoming workshops, technical competitions, cultural fests, and guest lectures across our campus.</p>
+        </section>
+
+        <section class="event-controls" aria-label="Event search and sorting controls">
+            <div class="event-control">
+                <label for="eventSearch">Search Events</label>
+                <input
+                    type="search"
+                    id="eventSearch"
+                    placeholder="Search by title, organizer, or venue..."
+                    aria-label="Search events"
+                >
+            </div>
+
+            <div class="event-control">
+                <label for="eventSort">Sort By</label>
+                <select id="eventSort" aria-label="Sort events by">
+                    <option value="date-asc">Date: Earliest First</option>
+                    <option value="date-desc">Date: Latest First</option>
+                    <option value="name-asc">Title: A to Z</option>
+                    <option value="name-desc">Title: Z to A</option>
+                </select>
+            </div>
+        </section>
+
+        <div id="eventMessage" class="events-message">
+            Loading events from campus schedule...
+        </div>
+
+        <div id="eventError" class="error-message-box" role="alert"></div>
+
+        <section id="eventGrid" class="event-grid" aria-live="polite">
+            <!-- Dynamically populated by events.js -->
+        </section>
+
+        <div id="pagination" class="pagination" aria-label="Events pagination">
+            <!-- Dynamically populated by events.js -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/events.js"></script>
+    <script src="../js/dynamic_menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - About</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo-link">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="logo-image">
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button id="menuButton" class="hamburger" type="button" aria-expanded="false" aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" aria-current="page">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li>
+                    <div class="theme-toggle-wrapper">
+                        <span class="theme-icon" aria-hidden="true">☀️</span>
+                        <label class="theme-toggle" for="themeToggle">
+                            <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode">
+                            <span class="theme-slider"></span>
+                        </label>
+                        <span class="theme-icon" aria-hidden="true">🌙</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-heading">
+            <h1>About StudentHub</h1>
+            <p>StudentHub is an integrated digital platform developed to support college students throughout their academic journey by bringing together college information, event notifications, resources, and feedback mechanisms.</p>
+        </section>
+
+        <section class="content-grid">
+            <article class="content-card">
+                <h2>Our Mission</h2>
+                <p>To streamline communication across departments, enhance student engagement, and provide an intuitive, accessible central directory for campus life.</p>
+            </article>
+
+            <article class="content-card">
+                <h2>Student Information</h2>
+                <p>Keep your contact details, course information, and academic registrations up to date with convenient account management tools.</p>
+                <a href="profile.html">View Profile</a>
+            </article>
+
+            <article class="content-card">
+                <h2>Campus Events</h2>
+                <p>Never miss a competition, guest lecture, or cultural activity. Discover upcoming events, filter by category, and participate actively.</p>
+                <a href="events.html">Browse Events</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/dynamic_menu.js"></script>
+</body>
+</html>

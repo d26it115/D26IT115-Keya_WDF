@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudentHub - Dashboard</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- ==========================================================
+         Header & Navigation
+         ========================================================== -->
+
+    <header>
+
+        <nav class="navbar" aria-label="Main navigation">
+
+            <a href="index.html" class="logo-link">
+                <img
+                    src="../images/logo.png"
+                    alt="StudentHub Logo"
+                    class="logo-image">
+
+                <span class="logo-text">
+                    StudentHub
+                </span>
+            </a>
+
+
+            <!-- Mobile Menu Button -->
+
+            <button
+                id="menuButton"
+                class="hamburger"
+                type="button"
+                aria-expanded="false"
+                aria-label="Open navigation menu">
+
+                ☰
+
+            </button>
+
+
+            <!-- Navigation Menu -->
+
+            <ul
+                id="navigationMenu"
+                class="navigation-menu">
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="events.html">
+                        Events
+                    </a>
+                </li>
+
+                <li>
+                    <a href="faq.html">
+                        FAQ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+                <li>
+                    <a href="feedback.html">
+                        Feedback
+                    </a>
+                </li>
+
+                <li>
+                    <a href="login.html">
+                        Login
+                    </a>
+                </li>
+
+                <li>
+                    <a href="register.html">
+                        Register
+                    </a>
+                </li>
+
+                <li>
+                    <a href="profile.html">
+                        Profile
+                    </a>
+                </li>
+
+
+                <!-- Logout -->
+
+                <li>
+                    <a
+                        href="../php/logout.php"
+                        class="logout-link">
+
+                        Logout
+
+                    </a>
+                </li>
+
+
+                <!-- Theme Toggle -->
+
+                <li>
+
+                    <div class="theme-toggle-wrapper">
+
+                        <span
+                            class="theme-icon"
+                            aria-hidden="true">
+
+                            ☀️
+
+                        </span>
+
+
+                        <label
+                            class="theme-toggle"
+                            for="themeToggle">
+
+                            <input
+                                type="checkbox"
+                                id="themeToggle"
+                                aria-label="Toggle dark mode">
+
+                            <span class="theme-slider"></span>
+
+                        </label>
+
+
+                        <span
+                            class="theme-icon"
+                            aria-hidden="true">
+
+                            🌙
+
+                        </span>
+
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ==========================================================
+         Main Content
+         ========================================================== -->
+
+    <main>
+
+        <!-- Page Heading -->
+
+        <section class="page-heading">
+
+            <h1>
+                Student Dashboard
+            </h1>
+
+            <p>
+                Welcome back!
+                Access your student services,
+                upcoming events, and announcements
+                from one place.
+            </p>
+
+        </section>
+
+
+        <!-- Dashboard Cards -->
+
+        <section class="content-grid">
+
+            <!-- Profile -->
+
+            <article class="content-card">
+
+                <h2>
+                    My Profile
+                </h2>
+
+                <p>
+                    View, verify, and update your personal
+                    student records and registered course
+                    information.
+                </p>
+
+                <a href="profile.html">
+                    View Profile
+                </a>
+
+            </article>
+
+
+            <!-- Events -->
+
+            <article class="content-card">
+
+                <h2>
+                    Campus Events
+                </h2>
+
+                <p>
+                    Check the latest technical workshops,
+                    competitions, cultural events,
+                    and seminars.
+                </p>
+
+                <a href="events.html">
+                    Browse Events
+                </a>
+
+            </article>
+
+
+            <!-- Feedback -->
+
+            <article class="content-card">
+
+                <h2>
+                    Submit Feedback
+                </h2>
+
+                <p>
+                    Help us improve campus services
+                    and share your StudentHub experience.
+                </p>
+
+                <a href="feedback.html">
+                    Give Feedback
+                </a>
+
+            </article>
+
+        </section>
+
+
+        <!-- Campus Announcements -->
+
+        <section class="content-section">
+
+            <h2>
+                Campus Announcements
+            </h2>
+
+            <p>
+                <strong>
+                    Mid-Semester Exam Schedule:
+                </strong>
+
+                Mid-term assessments will commence
+                next month. Check department notice
+                boards for timetable details.
+            </p>
+
+            <p>
+                <strong>
+                    Technical Symposium Registrations:
+                </strong>
+
+                Early registrations for the annual
+                Web Development Workshop are now open
+                on the Events page.
+            </p>
+
+        </section>
+
+    </main>
+
+
+
+    <footer>
+
+        <p>
+            &copy; 2026 StudentHub.
+            All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="../js/script.js"></script>
+    <script src="../js/dynamic_menu.js"></script>
+
+
+    <script>
+
+        (async function () {
+
+            try {
+
+                const response = await fetch(
+                    "../php/session_status.php",
+                    {
+                        credentials: "same-origin",
+                        cache: "no-store"
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (!data.logged_in) {
+
+                    window.location.href =
+                        "login.html?error=" +
+                        encodeURIComponent(
+                            data.message ||
+                            "Please log in to access the dashboard."
+                        );
+
+                    return;
+                }
+
+
+                /*
+                 * If an element with the ID
+                 * dashboardUserName exists,
+                 * display the logged-in student's name.
+                 */
+
+                const nameElement =
+                    document.getElementById(
+                        "dashboardUserName"
+                    );
+
+
+                if (nameElement) {
+
+                    nameElement.textContent =
+                        data.name;
+
+                }
+
+            }
+
+            catch (error) {
+
+                window.location.href =
+                    "login.html?error=" +
+                    encodeURIComponent(
+                        "Unable to verify your session."
+                    );
+
+            }
+
+        })();
+
+    </script>
+
+</body>
+
+</html>

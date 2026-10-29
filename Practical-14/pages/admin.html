@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo-link">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="logo-image">
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button id="menuButton" class="hamburger" type="button" aria-expanded="false" aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li>
+                    <div class="theme-toggle-wrapper">
+                        <span class="theme-icon" aria-hidden="true">☀️</span>
+                        <label class="theme-toggle" for="themeToggle">
+                            <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode">
+                            <span class="theme-slider"></span>
+                        </label>
+                        <span class="theme-icon" aria-hidden="true">🌙</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-heading">
+            <h1>Campus Admin Panel</h1>
+            <p>Administrative management console for student registrations, event listings, and user feedback.</p>
+        </section>
+
+        <section class="content-grid">
+            <article class="content-card">
+                <h2>Student Registrations</h2>
+                <p>View, verify, and export registered student submissions stored in the campus CSV records.</p>
+                <a href="../php/view_registrations.php">View Registrations</a>
+            </article>
+
+            <article class="content-card">
+                <h2>Campus Events</h2>
+                <p>Review active and scheduled events, competitions, and departmental workshops.</p>
+                <a href="events.html">Browse Events</a>
+            </article>
+
+            <article class="content-card">
+                <h2>Feedback Submissions</h2>
+                <p>Review submitted suggestions and ratings from students across departments.</p>
+                <a href="feedback.html">Open Feedback</a>
+            </article>
+        </section>
+
+        <section class="content-section">
+            <h2>System Overview</h2>
+            <div class="stats">
+                <div class="stat">
+                    <h3>Active Registrations</h3>
+                    <dd>250+</dd>
+                </div>
+                <div class="stat">
+                    <h3>Scheduled Events</h3>
+                    <dd>10</dd>
+                </div>
+                <div class="stat">
+                    <h3>Feedback Logs</h3>
+                    <dd>85</dd>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/dynamic_menu.js"></script>
+</body>
+</html>

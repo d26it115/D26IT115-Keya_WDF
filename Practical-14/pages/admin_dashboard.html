@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg, #ffffff);
+            border: 1px solid var(--border-color, #dce3ed);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
+        }
+
+        .stat-card h2 {
+            font-size: 16px;
+            margin: 0 0 12px;
+        }
+
+        .stat-number {
+            font-size: 34px;
+            font-weight: 700;
+            margin: 0;
+            color: #2563eb;
+        }
+
+        .dashboard-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .dashboard-table th,
+        .dashboard-table td {
+            padding: 12px;
+            border-bottom: 1px solid #dce3ed;
+            text-align: left;
+        }
+
+        .dashboard-table th {
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .dashboard-message {
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .dashboard-error {
+            color: #991b1b;
+            background: #fee2e2;
+        }
+
+        .dashboard-loading {
+            color: #475569;
+        }
+
+        @media (max-width: 600px) {
+            .stat-card {
+                padding: 18px;
+            }
+
+            .stat-number {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo-link">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="logo-image">
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button
+                id="menuButton"
+                class="hamburger"
+                type="button"
+                aria-expanded="false"
+                aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="../php/logout.php" class="logout-link">Logout</a></li>
+                <li>
+                    <div class="theme-toggle-wrapper">
+                        <span class="theme-icon" aria-hidden="true">☀️</span>
+                        <label class="theme-toggle" for="themeToggle">
+                            <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode">
+                            <span class="theme-slider"></span>
+                        </label>
+                        <span class="theme-icon" aria-hidden="true">🌙</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-heading">
+            <h1>Admin Dashboard</h1>
+            <p>Welcome to the StudentHub administration panel. Manage students, events, and registrations from here.</p>
+        </section>
+
+        <p id="dashboardMessage" class="dashboard-message dashboard-loading" role="status">
+            Loading dashboard statistics...
+        </p>
+
+        <section class="dashboard-stats" aria-label="Dashboard statistics">
+            <article class="stat-card">
+                <h2>Total Students</h2>
+                <p class="stat-number" id="studentCount">—</p>
+            </article>
+
+            <article class="stat-card">
+                <h2>Total Events</h2>
+                <p class="stat-number" id="eventCount">—</p>
+            </article>
+
+            <article class="stat-card">
+                <h2>Total Registrations</h2>
+                <p class="stat-number" id="registrationCount">—</p>
+            </article>
+        </section>
+
+        <section class="content-grid">
+            <article class="content-card">
+                <h2>Manage Students</h2>
+                <p>View and manage registered student information stored in the database.</p>
+                <a href="student_management.html" class="hero-button">View Students</a>
+            </article>
+
+            <article class="content-card">
+                <h2>Manage Events</h2>
+                <p>Add, update, and manage campus events available to students.</p>
+                <a href="event_management.html" class="hero-button">Manage Events</a>
+            </article>
+
+            <article class="content-card">
+                <h2>Registrations</h2>
+                <p>View student registrations and event participation information.</p>
+                <a href="../php/view_registrations.php" class="hero-button">View Registrations</a>
+            </article>
+        </section>
+
+        <section class="content-section">
+            <h2>Latest Registrations</h2>
+            <p>Displays the five most recent event registrations from the database.</p>
+
+            <div class="dashboard-table-wrapper">
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Registration ID</th>
+                            <th>Student</th>
+                            <th>Email</th>
+                            <th>Event</th>
+                            <th>Registered At</th>
+                        </tr>
+                    </thead>
+                    <tbody id="latestRegistrationsBody">
+                        <tr>
+                            <td colspan="5">Loading registrations...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Administration</h2>
+            <p>Only users with the <strong>admin</strong> role can access this dashboard.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/dynamic_menu.js"></script>
+
+    <script>
+        async function loadAdminDashboard() {
+            const message = document.getElementById("dashboardMessage");
+            const tableBody = document.getElementById("latestRegistrationsBody");
+
+            try {
+                const sessionResponse = await fetch("../php/session_status.php", {
+                    credentials: "same-origin",
+                    cache: "no-store"
+                });
+
+                if (!sessionResponse.ok) {
+                    throw new Error("Unable to verify your session.");
+                }
+
+                const session = await sessionResponse.json();
+
+                if (!session.logged_in) {
+                    window.location.replace(
+                        "login.html?error=" +
+                        encodeURIComponent("Please log in to access the admin dashboard.")
+                    );
+                    return;
+                }
+
+                if (String(session.role).toLowerCase() !== "admin") {
+                    window.location.replace(
+                        "dashboard.html?error=" +
+                        encodeURIComponent("Only administrators can access this dashboard.")
+                    );
+                    return;
+                }
+
+                const response = await fetch("../php/admin_dashboard_data.php", {
+                    credentials: "same-origin",
+                    cache: "no-store"
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || "Failed to load dashboard data.");
+                }
+
+                const data = result.data;
+
+                document.getElementById("studentCount").textContent = data.student_count;
+                document.getElementById("eventCount").textContent = data.event_count;
+                document.getElementById("registrationCount").textContent = data.registration_count;
+
+                tableBody.replaceChildren();
+
+                if (!data.latest_registrations.length) {
+                    const row = document.createElement("tr");
+                    const cell = document.createElement("td");
+
+                    cell.colSpan = 5;
+                    cell.textContent = "No registrations found.";
+                    row.appendChild(cell);
+                    tableBody.appendChild(row);
+                } else {
+                    data.latest_registrations.forEach(registration => {
+                        const row = document.createElement("tr");
+
+                        [
+                            registration.registration_id,
+                            registration.student_name,
+                            registration.student_email,
+                            registration.event_title,
+                            registration.registered_at
+                        ].forEach(value => {
+                            const cell = document.createElement("td");
+                            cell.textContent = value ?? "—";
+                            row.appendChild(cell);
+                        });
+
+                        tableBody.appendChild(row);
+                    });
+                }
+
+                message.textContent = "Dashboard data loaded successfully.";
+                message.className = "dashboard-message";
+            } catch (error) {
+                message.textContent = error.message;
+                message.className = "dashboard-message dashboard-error";
+
+                tableBody.replaceChildren();
+
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+
+                cell.colSpan = 5;
+                cell.textContent = "Unable to load registrations.";
+                row.appendChild(cell);
+                tableBody.appendChild(row);
+            }
+        }
+
+        loadAdminDashboard();
+    </script>
+</body>
+</html>
