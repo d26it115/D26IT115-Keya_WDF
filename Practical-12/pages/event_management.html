@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudentHub - Event Management</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .event-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .event-form-grid .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .event-form-grid input,
+        .event-form-grid select,
+        .event-form-grid textarea {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .event-form-grid textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .event-poster-preview {
+            display: none;
+            max-width: 220px;
+            max-height: 160px;
+            object-fit: contain;
+            margin-top: 12px;
+            border-radius: 8px;
+        }
+
+        .event-poster {
+            width: 90px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .event-table-wrapper {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        #eventsTable {
+            width: 100%;
+            min-width: 1000px;
+            border-collapse: collapse;
+        }
+
+        #eventsTable th,
+        #eventsTable td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #d9e0eb;
+        }
+
+        #eventsTable th {
+            background: #eef3ff;
+            color: #172b65;
+        }
+
+        .event-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .status-open {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-closed {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .event-action {
+            display: inline-block;
+            margin: 3px;
+            cursor: pointer;
+        }
+
+        .event-message {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .event-message.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .event-message.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .event-poster-note {
+            font-size: 14px;
+            color: #64748b;
+            margin-top: 6px;
+        }
+
+        .event-toolbar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: end;
+        }
+
+        .event-toolbar .form-group {
+            flex: 1 1 180px;
+        }
+
+        @media (max-width: 700px) {
+            .event-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-form-grid .full-width {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+
+            <a href="index.html" class="logo-link">
+                <img
+                    src="../images/logo.png"
+                    alt="StudentHub Logo"
+                    class="logo-image"
+                >
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button
+                id="menuButton"
+                class="hamburger"
+                type="button"
+                aria-expanded="false"
+                aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="admin_dashboard.html">Admin Dashboard</a></li>
+
+                <li>
+                    <div class="theme-toggle-wrapper">
+                        <span class="theme-icon" aria-hidden="true">☀️</span>
+
+                        <label class="theme-toggle" for="themeToggle">
+                            <input
+                                type="checkbox"
+                                id="themeToggle"
+                                aria-label="Toggle dark mode"
+                            >
+                            <span class="theme-slider"></span>
+                        </label>
+
+                        <span class="theme-icon" aria-hidden="true">🌙</span>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="../php/logout.php" class="logout-link">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- Page heading -->
+        <section class="page-heading">
+            <h1>Event Management</h1>
+            <p>
+                Add, view, edit, delete, and manage campus events and posters.
+            </p>
+        </section>
+
+
+        <!-- Feedback messages -->
+        <section
+            id="messageSection"
+            class="content-section"
+            style="display: none;"
+        >
+            <div
+                id="messageBox"
+                class="event-message"
+                role="status"
+                aria-live="polite"
+            ></div>
+        </section>
+
+
+        <!-- Add or edit event -->
+        <section class="content-section">
+
+            <h2 id="formHeading">Add New Event</h2>
+
+            <form
+                id="eventForm"
+                action="../php/add_event.php"
+                method="post"
+                enctype="multipart/form-data"
+            >
+
+                <input type="hidden" name="event_id" id="eventId">
+
+                <div class="event-form-grid">
+
+                    <div class="form-group">
+                        <label for="title">Event Title *</label>
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            maxlength="150"
+                            required
+                            placeholder="Enter event title"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select category</option>
+                            <option value="Hackathon">Hackathon</option>
+                            <option value="Competition">Competition</option>
+                            <option value="Workshop">Workshop</option>
+                            <option value="Seminar">Seminar</option>
+                            <option value="Cultural">Cultural</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventDate">Event Date *</label>
+                        <input
+                            type="date"
+                            id="eventDate"
+                            name="event_date"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="venue">Venue *</label>
+                        <input
+                            type="text"
+                            id="venue"
+                            name="venue"
+                            maxlength="100"
+                            required
+                            placeholder="Enter event venue"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="organizer">Organizer *</label>
+                        <input
+                            type="text"
+                            id="organizer"
+                            name="organizer"
+                            maxlength="100"
+                            required
+                            placeholder="Enter organizer name"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Event Status *</label>
+                        <select id="status" name="status" required>
+                            <option value="open">Open</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="description">Description</label>
+                        <textarea
+                            id="description"
+                            name="description"
+                            placeholder="Describe the event"
+                        ></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="poster">Event Poster</label>
+                        <input
+                            type="file"
+                            id="poster"
+                            name="poster"
+                            accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                        >
+
+                        <p class="event-poster-note">
+                            Allowed formats: JPG, JPEG, PNG, WebP.
+                            Maximum size: 2 MB.
+                        </p>
+
+                        <img
+                            id="posterPreview"
+                            class="event-poster-preview"
+                            alt="Selected event poster preview"
+                        >
+                    </div>
+
+                </div>
+
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+                    <button type="submit" id="saveEventButton">
+                        Add Event
+                    </button>
+
+                    <button type="button" id="cancelEditButton" hidden>
+                        Cancel Edit
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+
+        <!-- Search and filters -->
+        <section class="content-section">
+
+            <h2>Search and Filter Events</h2>
+
+            <form id="eventFilterForm">
+
+                <div class="event-toolbar">
+
+                    <div class="form-group">
+                        <label for="eventSearch">Search</label>
+                        <input
+                            type="search"
+                            id="eventSearch"
+                            name="search"
+                            placeholder="Search title, venue, organizer"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="filterCategory">Category</label>
+                        <select id="filterCategory" name="category">
+                            <option value="">All Categories</option>
+                            <option value="Hackathon">Hackathon</option>
+                            <option value="Competition">Competition</option>
+                            <option value="Workshop">Workshop</option>
+                            <option value="Seminar">Seminar</option>
+                            <option value="Cultural">Cultural</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="filterStatus">Status</label>
+                        <select id="filterStatus" name="status">
+                            <option value="">All Statuses</option>
+                            <option value="open">Open</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Search / Filter</button>
+
+                    <button type="button" id="clearEventFilters">
+                        Clear Filters
+                    </button>
+
+                </div>
+            </form>
+        </section>
+
+
+        <!-- Event list -->
+        <section class="content-section">
+
+            <div
+                style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    gap: 12px;
+                "
+            >
+                <div>
+                    <h2>Event Records</h2>
+                    <p>Manage existing events stored in the database.</p>
+                </div>
+
+                <div>
+                    <strong>Total Events: </strong>
+                    <span id="eventCount">0</span>
+                </div>
+            </div>
+
+            <div class="event-table-wrapper">
+                <table id="eventsTable">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Poster</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Date</th>
+                            <th>Venue</th>
+                            <th>Organizer</th>
+                            <th>Status</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="eventsTableBody">
+                        <tr>
+                            <td colspan="10" style="text-align: center;">
+                                Loading events...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </section>
+
+
+        <!-- Pagination -->
+        <section class="content-section">
+
+            <div
+                style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 12px;
+                    flex-wrap: wrap;
+                "
+            >
+                <button type="button" id="previousPage">
+                    Previous
+                </button>
+
+                <span id="pageInfo">Page 1 of 1</span>
+
+                <button type="button" id="nextPage">
+                    Next
+                </button>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+
+    <script src="../js/script.js"></script>
+
+    <script>
+        "use strict";
+
+        const eventForm = document.getElementById("eventForm");
+        const eventFilterForm = document.getElementById("eventFilterForm");
+        const eventTableBody = document.getElementById("eventsTableBody");
+        const eventCount = document.getElementById("eventCount");
+        const messageSection = document.getElementById("messageSection");
+        const messageBox = document.getElementById("messageBox");
+        const posterInput = document.getElementById("poster");
+        const posterPreview = document.getElementById("posterPreview");
+
+        const previousPage = document.getElementById("previousPage");
+        const nextPage = document.getElementById("nextPage");
+        const pageInfo = document.getElementById("pageInfo");
+
+        let currentPage = 1;
+        const recordsPerPage = 5;
+        let previewObjectUrl = null;
+
+
+        // Show feedback.
+        function showMessage(message, type = "success") {
+            messageBox.textContent = message;
+            messageBox.className = "event-message " + type;
+            messageSection.style.display = "block";
+
+            window.setTimeout(() => {
+                messageSection.style.display = "none";
+            }, 5000);
+        }
+
+
+        // Escape values before inserting text into table cells.
+        function createCell(value) {
+            const cell = document.createElement("td");
+            cell.textContent = value ?? "";
+            return cell;
+        }
+
+
+        // Check that the selected poster appears to be an allowed image.
+        // The PHP endpoint must independently validate the actual file.
+        posterInput.addEventListener("change", function () {
+            const file = posterInput.files[0];
+
+            if (previewObjectUrl) {
+                URL.revokeObjectURL(previewObjectUrl);
+                previewObjectUrl = null;
+            }
+
+            posterPreview.style.display = "none";
+            posterPreview.removeAttribute("src");
+
+            if (!file) {
+                return;
+            }
+
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/webp"
+            ];
+
+            const maxSize = 2 * 1024 * 1024;
+
+            if (!allowedTypes.includes(file.type)) {
+                posterInput.value = "";
+                showMessage(
+                    "Choose a JPG, PNG, or WebP image.",
+                    "error"
+                );
+                return;
+            }
+
+            if (file.size > maxSize) {
+                posterInput.value = "";
+                showMessage(
+                    "The poster must be 2 MB or smaller.",
+                    "error"
+                );
+                return;
+            }
+
+            previewObjectUrl = URL.createObjectURL(file);
+            posterPreview.src = previewObjectUrl;
+            posterPreview.style.display = "block";
+        });
+
+
+        // Load events from the PHP API.
+        async function loadEvents() {
+            eventTableBody.replaceChildren();
+
+            const loadingRow = document.createElement("tr");
+            const loadingCell = document.createElement("td");
+            loadingCell.colSpan = 10;
+            loadingCell.textContent = "Loading events...";
+            loadingCell.style.textAlign = "center";
+            loadingRow.appendChild(loadingCell);
+            eventTableBody.appendChild(loadingRow);
+
+            try {
+                const params = new URLSearchParams(
+                    new FormData(eventFilterForm)
+                );
+
+                params.set("page", String(currentPage));
+                params.set("limit", String(recordsPerPage));
+
+                const response = await fetch(
+                    "../php/events.php?" + params.toString(),
+                    {
+                        credentials: "same-origin",
+                        cache: "no-store",
+                        headers: { "Accept": "application/json" }
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Unable to retrieve events.");
+                }
+
+                const data = await response.json();
+
+                if (!data.success) {
+                    throw new Error(
+                        data.message || "Unable to retrieve events."
+                    );
+                }
+
+                const total = Number(data.total) || 0;
+                const totalPages = Math.max(
+                    1,
+                    Math.ceil(total / recordsPerPage)
+                );
+
+                if (currentPage > totalPages) {
+                    currentPage = totalPages;
+                    await loadEvents();
+                    return;
+                }
+
+                displayEvents(data.events || []);
+                eventCount.textContent = String(total);
+
+                pageInfo.textContent =
+                    "Page " + currentPage + " of " + totalPages;
+
+                previousPage.disabled = currentPage <= 1;
+                nextPage.disabled = currentPage >= totalPages;
+
+            } catch (error) {
+                console.error("Event loading error:", error);
+
+                eventTableBody.replaceChildren();
+
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+
+                cell.colSpan = 10;
+                cell.style.textAlign = "center";
+                cell.textContent =
+                    "Unable to load events. Please check your connection.";
+
+                row.appendChild(cell);
+                eventTableBody.appendChild(row);
+
+                eventCount.textContent = "0";
+                previousPage.disabled = true;
+                nextPage.disabled = true;
+
+                showMessage(error.message, "error");
+            }
+        }
+
+
+        // Render the event list.
+        function displayEvents(events) {
+            eventTableBody.replaceChildren();
+
+            if (!Array.isArray(events) || events.length === 0) {
+                const row = document.createElement("tr");
+                const cell = document.createElement("td");
+
+                cell.colSpan = 10;
+                cell.style.textAlign = "center";
+                cell.textContent = "No events found.";
+
+                row.appendChild(cell);
+                eventTableBody.appendChild(row);
+                return;
+            }
+
+            events.forEach(function (event) {
+                const row = document.createElement("tr");
+
+                row.appendChild(createCell(event.event_id));
+
+                const posterCell = document.createElement("td");
+
+                if (event.poster) {
+                    const image = document.createElement("img");
+                    image.className = "event-poster";
+                    image.alt = "Poster for " + (event.title || "event");
+                    image.loading = "lazy";
+                    image.src =
+                        "../images/event_posters/" +
+                        encodeURIComponent(event.poster);
+
+                    image.addEventListener("error", function () {
+                        posterCell.textContent = "Poster unavailable";
+                    });
+
+                    posterCell.appendChild(image);
+                } else {
+                    posterCell.textContent = "No poster";
+                }
+
+                row.appendChild(posterCell);
+                row.appendChild(createCell(event.title));
+                row.appendChild(createCell(event.category));
+                row.appendChild(createCell(event.event_date));
+                row.appendChild(createCell(event.venue));
+                row.appendChild(createCell(event.organizer));
+
+                const statusCell = document.createElement("td");
+                const statusBadge = document.createElement("span");
+
+                statusBadge.className =
+                    "event-status " +
+                    (event.status === "closed"
+                        ? "status-closed"
+                        : "status-open");
+
+                statusBadge.textContent =
+                    event.status === "closed" ? "Closed" : "Open";
+
+                statusCell.appendChild(statusBadge);
+                row.appendChild(statusCell);
+
+                row.appendChild(createCell(event.description));
+
+                const actionsCell = document.createElement("td");
+
+                const editButton = document.createElement("button");
+                editButton.type = "button";
+                editButton.className = "event-action";
+                editButton.textContent = "Edit";
+
+                editButton.addEventListener("click", function () {
+                    fillEventForm(event);
+                });
+
+                const deleteButton = document.createElement("button");
+                deleteButton.type = "button";
+                deleteButton.className = "event-action";
+                deleteButton.textContent = "Delete";
+
+                deleteButton.addEventListener("click", function () {
+                    deleteEvent(event.event_id, event.title);
+                });
+
+                actionsCell.appendChild(editButton);
+                actionsCell.appendChild(deleteButton);
+
+                row.appendChild(actionsCell);
+                eventTableBody.appendChild(row);
+            });
+        }
+
+
+        // Fill the form to edit an existing event.
+        function fillEventForm(event) {
+            document.getElementById("eventId").value = event.event_id;
+            document.getElementById("title").value = event.title || "";
+            document.getElementById("category").value = event.category || "";
+            document.getElementById("eventDate").value =
+                event.event_date || "";
+            document.getElementById("venue").value = event.venue || "";
+            document.getElementById("organizer").value =
+                event.organizer || "";
+            document.getElementById("description").value =
+                event.description || "";
+            document.getElementById("status").value =
+                event.status || "open";
+
+            document.getElementById("formHeading").textContent =
+                "Edit Event";
+
+            document.getElementById("saveEventButton").textContent =
+                "Update Event";
+
+            document.getElementById("cancelEditButton").hidden = false;
+
+            posterInput.required = false;
+
+            if (event.poster) {
+                posterPreview.src =
+                    "../images/event_posters/" +
+                    encodeURIComponent(event.poster);
+
+                posterPreview.style.display = "block";
+            } else {
+                posterPreview.style.display = "none";
+            }
+
+            eventForm.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+
+        // Reset the form to add a new event.
+        function resetEventForm() {
+            eventForm.reset();
+
+            document.getElementById("eventId").value = "";
+
+            document.getElementById("formHeading").textContent =
+                "Add New Event";
+
+            document.getElementById("saveEventButton").textContent =
+                "Add Event";
+
+            document.getElementById("cancelEditButton").hidden = true;
+
+            posterInput.required = false;
+            posterPreview.style.display = "none";
+            posterPreview.removeAttribute("src");
+
+            if (previewObjectUrl) {
+                URL.revokeObjectURL(previewObjectUrl);
+                previewObjectUrl = null;
+            }
+
+            eventForm.action = "../php/add_event.php";
+        }
+
+
+        document.getElementById("cancelEditButton")
+            .addEventListener("click", resetEventForm);
+
+
+        // Submit the event form to the correct PHP endpoint.
+        eventForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const eventId = document.getElementById("eventId").value;
+            const editing = eventId !== "";
+
+            const file = posterInput.files[0];
+
+            if (file) {
+                const allowedTypes = [
+                    "image/jpeg",
+                    "image/png",
+                    "image/webp"
+                ];
+
+                if (!allowedTypes.includes(file.type)) {
+                    showMessage(
+                        "Choose a JPG, PNG, or WebP poster.",
+                        "error"
+                    );
+                    return;
+                }
+
+                if (file.size > 2 * 1024 * 1024) {
+                    showMessage(
+                        "The poster must be 2 MB or smaller.",
+                        "error"
+                    );
+                    return;
+                }
+            }
+
+            const endpoint = editing
+                ? "../php/edit_event.php"
+                : "../php/add_event.php";
+
+            const formData = new FormData(eventForm);
+            const saveButton =
+                document.getElementById("saveEventButton");
+
+            saveButton.disabled = true;
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: "POST",
+                    body: formData,
+                    credentials: "same-origin",
+                    cache: "no-store",
+                    headers: { "Accept": "application/json" }
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(
+                        data.message || "Unable to save the event."
+                    );
+                }
+
+                showMessage(
+                    data.message ||
+                    (editing
+                        ? "Event updated successfully."
+                        : "Event added successfully."),
+                    "success"
+                );
+
+                resetEventForm();
+                currentPage = 1;
+                await loadEvents();
+
+            } catch (error) {
+                console.error("Event save error:", error);
+                showMessage(error.message, "error");
+
+            } finally {
+                saveButton.disabled = false;
+            }
+        });
+
+
+        // Delete an event after confirmation.
+        async function deleteEvent(eventId, title) {
+            const confirmed = window.confirm(
+                'Are you sure you want to delete "' +
+                title +
+                '"? This action cannot be undone.'
+            );
+
+            if (!confirmed) {
+                return;
+            }
+
+            try {
+                const formData = new FormData();
+                formData.append("event_id", eventId);
+
+                const response = await fetch(
+                    "../php/delete_event.php",
+                    {
+                        method: "POST",
+                        body: formData,
+                        credentials: "same-origin",
+                        cache: "no-store",
+                        headers: { "Accept": "application/json" }
+                    }
+                );
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(
+                        data.message || "Unable to delete the event."
+                    );
+                }
+
+                showMessage(
+                    data.message || "Event deleted successfully.",
+                    "success"
+                );
+
+                await loadEvents();
+
+            } catch (error) {
+                console.error("Event delete error:", error);
+                showMessage(error.message, "error");
+            }
+        }
+
+
+        // Search and filters.
+        eventFilterForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            currentPage = 1;
+            loadEvents();
+        });
+
+
+        document.getElementById("clearEventFilters")
+            .addEventListener("click", function () {
+                eventFilterForm.reset();
+                currentPage = 1;
+                loadEvents();
+            });
+
+
+        previousPage.addEventListener("click", function () {
+            if (currentPage > 1) {
+                currentPage--;
+                loadEvents();
+            }
+        });
+
+
+        nextPage.addEventListener("click", function () {
+            currentPage++;
+            loadEvents();
+        });
+
+
+        // Admin-only page access.
+        async function checkAdminAccess() {
+            try {
+                const response = await fetch(
+                    "../php/session_status.php",
+                    {
+                        credentials: "same-origin",
+                        cache: "no-store",
+                        headers: { "Accept": "application/json" }
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Unable to verify your session.");
+                }
+
+                const data = await response.json();
+
+                if (!data.logged_in) {
+                    window.location.replace(
+                        "login.html?error=" +
+                        encodeURIComponent(
+                            "Please log in to manage events."
+                        )
+                    );
+
+                    return false;
+                }
+
+                if (data.role !== "admin") {
+                    window.location.replace(
+                        "dashboard.html?error=" +
+                        encodeURIComponent(
+                            "Only administrators can manage events."
+                        )
+                    );
+
+                    return false;
+                }
+
+                return true;
+
+            } catch (error) {
+                console.error("Admin check error:", error);
+
+                window.location.replace(
+                    "login.html?error=" +
+                    encodeURIComponent(
+                        "Unable to verify access. Please log in again."
+                    )
+                );
+
+                return false;
+            }
+        }
+
+
+        // Read status messages from the URL.
+        function checkURLMessage() {
+            const params = new URLSearchParams(window.location.search);
+
+            if (params.has("success")) {
+                showMessage(params.get("success"), "success");
+            } else if (params.has("error")) {
+                showMessage(params.get("error"), "error");
+            }
+        }
+
+
+        // Initialise page.
+        (async function initialisePage() {
+            const allowed = await checkAdminAccess();
+
+            if (!allowed) {
+                return;
+            }
+
+            checkURLMessage();
+            await loadEvents();
+        })();
+
+    </script>
+
+</body>
+</html>

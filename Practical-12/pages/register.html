@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub - Register</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo-link">
+                <img src="../images/logo.png" alt="StudentHub Logo" class="logo-image">
+                <span class="logo-text">StudentHub</span>
+            </a>
+
+            <button id="menuButton" class="hamburger" type="button" aria-expanded="false" aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <ul id="navigationMenu" class="navigation-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html" aria-current="page">Register</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li>
+                    <div class="theme-toggle-wrapper">
+                        <span class="theme-icon" aria-hidden="true">☀️</span>
+                        <label class="theme-toggle" for="themeToggle">
+                            <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode">
+                            <span class="theme-slider"></span>
+                        </label>
+                        <span class="theme-icon" aria-hidden="true">🌙</span>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-heading">
+            <h1>Student Registration</h1>
+            <p>Create your official student account to access campus activities, event registration, and student profiles.</p>
+        </section>
+
+        <section class="content-section">
+            <div id="successMessage" class="success-message" role="status">
+                🎉 Registration completed successfully! Your account details have been recorded.
+            </div>
+
+            <div id="errorMessage" class="error-message-box" role="alert" style="display: none;">
+                ⚠️ Registration failed. Please check the entered details and try again.
+            </div>
+
+            <form
+                id="registrationForm"
+                action="../php/process_registration.php"
+                method="POST"
+                novalidate
+            >
+                <div class="form-group">
+                    <label for="name">
+                        Full Name <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="e.g. Hardi Patel"
+                        autocomplete="name"
+                        required
+                    >
+                    <span id="nameError" class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">
+                        Email Address <span class="required">*</span>
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="e.g. hardipatel@gmail.com"
+                        autocomplete="email"
+                        required
+                    >
+                    <span id="emailError" class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">
+                        Mobile Number <span class="required">*</span>
+                    </label>
+                    <input
+                        type="tel"
+                        id="mobile"
+                        name="mobile"
+                        placeholder="10-digit mobile number (starts with 6-9)"
+                        maxlength="10"
+                        autocomplete="tel"
+                        required
+                    >
+                    <span id="mobileError" class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        Password <span class="required">*</span>
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="At least 8 characters, letters, digits & symbols"
+                        autocomplete="new-password"
+                        required
+                    >
+                    <div id="passwordStrength" class="password-strength"></div>
+                    <span id="passwordError" class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">
+                        Confirm Password <span class="required">*</span>
+                    </label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Re-enter your password"
+                        autocomplete="new-password"
+                        required
+                    >
+                    <span id="confirmPasswordError" class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="course">
+                        Course / Program <span class="required">*</span>
+                    </label>
+                    <select id="course" name="course" required>
+                        <option value="">-- Select Your Course --</option>
+                        <option value="BCA">BCA (Bachelor of Computer Applications)</option>
+                        <option value="BBA">BBA (Bachelor of Business Administration)</option>
+                        <option value="B.Sc">B.Sc (Bachelor of Science)</option>
+                        <option value="B.Com">B.Com (Bachelor of Commerce)</option>
+                        <option value="B.E.">B.E. (Bachelor of Engineering)</option>
+                        <option value="B.Tech">B.Tech (Bachelor of Technology)</option>
+                        <option value="MCA">MCA (Master of Computer Applications)</option>
+                    </select>
+                    <span id="courseError" class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="year">
+                        Academic Year <span class="required">*</span>
+                    </label>
+                    <select id="year" name="year" required>
+                        <option value="">-- Select Academic Year --</option>
+                        <option value="First Year">First Year</option>
+                        <option value="Second Year">Second Year</option>
+                        <option value="Third Year">Third Year</option>
+                        <option value="Fourth Year">Fourth Year</option>
+                    </select>
+                    <span id="yearError" class="error-message"></span>
+                </div>
+
+                <fieldset>
+                    <legend>Gender <span class="required">*</span></legend>
+                    <div class="gender-options">
+                        <label>
+                            <input type="radio" name="gender" value="Male"> Male
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="Female"> Female
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="Other"> Other
+                        </label>
+                    </div>
+                    <span id="genderError" class="error-message"></span>
+                </fieldset>
+
+                <div class="form-group">
+                    <label class="terms-label" for="terms">
+                        <input type="checkbox" id="terms" name="terms" value="accepted" required>
+                        <span>I accept the <a href="about.html">Terms and Conditions</a> and campus regulations.</span>
+                    </label>
+                    <span id="termsError" class="error-message"></span>
+                </div>
+
+                <button type="submit" class="register-button">Register Account</button>
+
+                <p class="login-link">
+                    Already registered? <a href="login.html">Sign In here</a>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 StudentHub. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
